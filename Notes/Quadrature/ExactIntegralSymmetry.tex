@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=1in,bottom=0.75in,left=0.5in,right=0.5in]{geometry}
+\usepackage{amsmath,amssymb,multirow,graphicx}
+
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\ff}{\mathbf{f}}
+\newcommand{\phie}{\phi_{\epsilon}}
+\newcommand{\psie}{\psi_{\epsilon}}
+\newcommand{\vphie}{\varphi_{\epsilon}}
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\bee}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\baa}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\bees}[1]{\begin{equation*} #1 \end{equation*}}
+\newcommand{\baas}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+
+
+\newcommand{\dd}[2]{\ensuremath{\frac{\text{d} #1}{\text{d} #2}}}
+\newcommand{\ddd}[2]{\ensuremath{\frac{\text{d}^2 #1}{\text{d} {#2}^2}}}
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\pdd}[2]{\ensuremath{\frac{\partial^2 #1}{\partial {#2}^2}}}
+\newcommand{\pddd}[3]{\ensuremath{\frac{\partial^2 #1}{\partial #2 \partial #3}}}
+
+
+\begin{document}
+	
+	\section*{Linear BEM Exact Integral Symmetry}
+	
+	In the original regularized Stokeslets method, the matrix that is constructed to solve the integral equation is always symmetric. When a linear BEM is implemented and exact integrals are calculated, then this symmetry is lost. The remaining question is if there are special cases for which symmetry is preserved. An obvious test case is a single line segment with equally spaced points separated by $h$. I present a proof below that the resulting linear BEM regularized Stokeslet matrix is symmetric.
+	
+	Assume that the line segment is oriented along the $x$-axis in 2D, so that the discretized points on the line are $\bx_0 =(x_0,0)$, $\bx_1=(x_1,0)$,...,$\bx_N=(x_N,0)$. Then, $r_{j,k}^2 := |\bx_j - \bx_k |^2 = (x_j - x_k)^2 = (j-k)^2h^2$. In this special case, the 2x2 $jk$-th block of the original regularized Stokeslet matrix reduces to:
+	\baas{
+	\hat{\mathcal{M}}^{j,k}_{11} &=& H_1(r_{j,k}^2) + H_2(r_{j,k}^2) (x_j - x_{k})^2 \\ 
+	\hat{\mathcal{M}}^{j,k}_{22} &=& H_1(r_{j,k}^2) \\
+	\hat{\mathcal{M}}^{j,k}_{12} &=& \hat{\mathcal{M}}^{j,k}_{21} = 0.
+	} 
+	I included this matrix block for purposes of comparison. I am really interested in the linear BEM version, which has a similar form:
+	\baas{
+	\mathcal{M}^{j,k}_{11} &=& \int_0^1 s\left(H_1(r_{j,k-1}^2(s)) + H_2(r_{j,k-1}^2(s)) (x_j - x_{k-1})^2 \right) + (1-s)\left(H_1(r_{j,k}^2(s)) + H_2(r_{j,k}^2(s)) (x_j - x_k)^2 \right) ds \\ 
+	\mathcal{M}^{j,k}_{22} &=& \int_0^1 s H_1(r_{j,k-1}^2(s)) + (1-s)H_1(r_{j,k}^2(s)) ds \\
+	\mathcal{M}^{j,k}_{12} &=& \mathcal{M}^{j,k}_{21} = 0,
+	} 
+where 
+\baas{
+H_1(r^2) &=& \frac{\eps^2}{r^2(s) + \eps^2} - \frac{1}{2}\ln\left(r^2(s) + \eps^2\right)\\
+H_2(r^2) &=& \frac{1}{r^2(s) + \eps^2}\\
+r_{j,k}^2(s) &=& (x_j - (1-s)x_k - sx_{k+1})^2 \\
+&=& ((x_j - x_k) + s(x_k - x_{k+1}))^2 \\
+&=& ((j-k)h - sh)^2 \\
+&=& h^2(j-k -s)^2.
+}	
+In order for the full matrix $\mathcal{M}$ to be symmetric, it is required that $\mathcal{M}^{j,k}_{ii} = \mathcal{M}^{k,j}_{ii}$ for $i=1,2$ and $\forall\; j,k$. Let $d = j-k$ and note:
+\baas{
+r_{j,k}^2(s) &=& h^2(d -s)^2 \\
+r_{j,k-1}^2(s) &=& h^2(d+1 -s)^2 \\
+r_{k,j}^2(s) &=& h^2(d+s)^2 \\
+r_{k,j-1}^2(s) &=& h^2(d-1+s)^2. 
+}
+As $s$ varies from 0 to 1,
+\baas{
+r_{j,k}^2(s): h^2d^2 \rightarrow h^2(d-1)^2 \\
+r_{j,k-1}^2(s): h^2(d+1)^2 \rightarrow h^2d^2 \\
+r_{k,j}^2(s): h^2d^2 \rightarrow h^2(d+1)^2 \\
+r_{k,j-1}^2(s): h^2(d-1)^2 \rightarrow h^2d^2.
+}
+Because we are on a straight line segment, $r_{j,k}^2(s)$ and $r_{k,j-1}^2(s)$ trace out the same values in the opposite order, as do $r_{j,k-1}^2(s)$ and $r_{k,j}^2(s)$. This means that we can make a change of variables to rewrite the integrals in $\mathcal{M}^{j,k}_{22}$. Let $z = 1-s$; then $-dz = ds$, $r_{j,k}^2(s)=r_{k,j-1}^2(z)$, and $r_{j,k-1}^2(s)=r_{k,j}^2(z)$ to give
+\baas{
+\int_0^1 s H_1(r_{j,k-1}^2(s)) ds &=& -\int_1^0 (1-z) H_1(r_{k,j}^2(z)) dz \\ 
+&=& \int_0^1 (1-z) H_1(r_{k,j}^2(z)) dz \\
+\int_0^1 (1-s)H_1(r_{j,k}^2(s)) ds &=& -\int_1^0 z H_1(r_{k,j-1}^2(z)) dz \\
+&=& \int_0^1 z  H_1(r_{k,j-1}^2(z)) dz,
+}
+so that 
+\baas{
+\mathcal{M}^{j,k}_{22} &=& \int_0^1 s H_1(r_{j,k-1}^2(s)) + (1-s)H_1(r_{j,k}^2(s)) ds \\
+&=& \int_0^1 (1-z) H_1(r_{k,j}^2(z)) + z  H_1(r_{k,j-1}^2(z)) dz \\
+&=& \mathcal{M}^{k,j}_{22}.
+}
+Now check the $\mathcal{M}^{j,k}_{11}$ term:
+\baas{
+\mathcal{M}^{j,k}_{11} &=& \int_0^1 s\left(H_1(r_{j,k-1}^2(s)) + H_2(r_{j,k-1}^2(s)) (x_j - x_{k-1})^2 \right) + (1-s)\left(H_1(r_{j,k}^2(s)) + H_2(r_{j,k}^2(s)) (x_j - x_k)^2 \right) ds \\ 
+&=& \int_0^1 s\left(H_1(r_{j,k-1}^2(s)) + H_2(r_{j,k-1}^2(s)) r_{j,k-1}^2(s) \right) + (1-s)\left(H_1(r_{j,k}^2(s)) + H_2(r_{j,k}^2(s)) r_{j,k}^2(s) \right) ds \\ 
+&=& -\int_1^0 (1-s) \left( H_1(r_{k,j}^2(s)) + H_2(r_{k,j}^2(s)) r_{k,j}^2(s) \right) + s \left(H_1(r_{k,j-1}^2(s)) + H_2(r_{k,j-1}^2(s)) r_{k,j-1}^2(s) \right) ds \\
+&=& \int_0^1 s \left(H_1(r_{k,j-1}^2(s)) + H_2(r_{k,j-1}^2(s)) r_{k,j-1}^2(s) \right)  + (1-s) \left( H_1(r_{k,j}^2(s)) + H_2(r_{k,j}^2(s)) r_{k,j}^2(s) \right) ds \\
+&=& \mathcal{M}^{k,j}_{11}.
+}
+This shows that $\mathcal{M}$ is symmetric. 
+
+In the case where the line segment is inclined with respect to the $x$-axis and the $y$ spacing is given by $\xi$, $r_{j,k}^2(s) = h^2(d-s)^2 +  \xi^2(d \pm s)^2$, depending on the sign of $y_j-y_k$. The cross terms will have the product $(x_j-x_k)(y_j-y_k) = \pm h\xi(d-s)^2$. I don't foresee any difficulties using these expressions to show symmetry in the more general case.
+
+\end{document}
+	
+	
+	
+	
+	
+	
+	
+	

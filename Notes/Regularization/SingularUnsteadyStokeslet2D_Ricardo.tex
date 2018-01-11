@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,latexsym}
+\textwidth6.5in\oddsidemargin 0.00in 
+\parskip 4pt
+\parindent 0pt
+%-------------------------------------------------------------
+% Define some commands to be used
+%-------------------------------------------------------------
+% DEFINE SOME STYLE PARAMETERS
+\newcommand{\bs}{\mbox{\bf s}}
+\newcommand{\bx}{\mbox{\bf x}}
+\newcommand{\by}{\mbox{\bf y}}
+\newcommand{\br}{\mbox{\bf r}}
+\newcommand{\bv}{\mbox{\bf v}}
+\newcommand{\tv}{\mbox{$\tilde v$}}
+\newcommand{\bu}{\mbox{\bf u}}
+\newcommand{\tu}{\mbox{$\tilde u$}}
+\newcommand{\tw}{\mbox{$\tilde w$}}
+\newcommand{\bU}{\mbox{\bf U}}
+\newcommand{\FF}{\mbox{\bf F}}
+\newcommand{\ff}{\mbox{\bf f}}
+\newcommand{\fn}{\mbox{$\ff - (\ff\cdot\bs)\bs$}}
+\newcommand{\fs}{\mbox{$(\ff\cdot\bs)$}}
+\newcommand{\fd}{\mbox{$\phi_{\delta}$}}
+%\newcommand{\fd}{\mbox{$\phi$}}
+\newcommand{\Gd}{\mbox{$G_{\delta}$}}
+\newcommand{\Bd}{\mbox{$B_{\delta}$}}
+%--------------------------------------------------------
+\begin{document}
+
+\begin{center}
+{\bf\large  Brinkmanlets + Dipoles in 2D}
+\end{center}
+
+
+%%%
+\section{Introduction}
+%%%
+According to Bree's writeup, the singular Brinkmanlet in 2D is
+\begin{equation}
+\mu \bv(\bx) = \ff H_1(r) + (\ff\cdot\bx)\bx H_2(r)
+\end{equation}
+where
+\begin{eqnarray}
+H_1(r) &=&  \left[ \frac{K_1(\lambda r) + \lambda r K_0(\lambda r)}{2\pi \lambda r} - \frac{1}{2\pi\lambda^2 r^2}\right]
+= \left( \frac{1}{2\pi\lambda r} \right) \left[ \lambda r K_0(\lambda r) + K_1(\lambda r) - \frac{1}{\lambda r} \right] \\
+H_2(r) &=& \left[ -\frac{2K_1(\lambda r) + \lambda r K_0(\lambda r)}{2\pi \lambda r^3} + \frac{2}{2\pi\lambda^2 r^4}\right]
+= \left( \frac{1}{2\pi\lambda^2 r^4} \right) \left[ 2- \lambda^2 r^2 K_2(\lambda r)  \right]
+\end{eqnarray}
+
+According to me, we have that 
+\[
+\mu\Delta\bv(\bx) = \ff Q_1(r) + (\ff\cdot\bx)\bx Q_2(r)
+\]
+where
+\begin{eqnarray}
+Q_1(r) &=&  \Delta H_1(r) + 2 H_2(r), \\
+Q_2(r) &=& \Delta H_2(r) + 4 \frac{H'_2(r)}{r}
+\end{eqnarray}
+This leads to
+\begin{eqnarray}
+Q_1(r) &=&  \left(\frac{\lambda}{2\pi r}\right) \left[ \lambda r K_0(\lambda r) +  K_1(\lambda r) \right], \\
+Q_2(r) &=& -\left(\frac{\lambda^2}{2\pi r^2}\right)  K_2(\lambda r) 
+\end{eqnarray}
+
+So, the Brinkmanlet $+$ dipole velocity is
+\[
+\mu\bv(\bx) = \ff [ H_1(r) + \alpha Q_1(r)] + (\ff\cdot\bx)\bx [H_2(r) + \alpha Q_2(r)]
+\]
+
+If we evaluate it at $r=a$ and set the solution equal to $(U,0)$, we have that $\ff = (f,0)$ and
+\begin{eqnarray}
+U &=& f [ H_1(a) + \alpha Q_1(a)],  \\
+0 &=& H_2(a) + \alpha Q_2(a)
+\end{eqnarray}
+The second equation gives
+\[
+\alpha = - \frac{H_2(a)}{Q_2(a)} = \frac{1}{\lambda^2} \left( \frac{2}{\lambda^2 a^2 K_2(\lambda a)} -1\right)
+\]
+and the first one 
+\begin{eqnarray*}
+\frac{U}{f}&=&H_1(a) + \alpha Q_1(a) \\
+&=&\left( \frac{1}{2\pi\lambda a} \right) \left[ \lambda a K_0(\lambda a) + K_1(\lambda a) - \frac{1}{\lambda a} \right] + \alpha  \left(\frac{\lambda}{2\pi a}\right) \left[ \lambda a K_0(\lambda a) +  K_1(\lambda a) \right] \\
+&=& \left( \frac{1}{2\pi\lambda a} \right) \left[ \lambda a K_0(\lambda a) + K_1(\lambda a) - \frac{1}{\lambda a}   -\frac{
+ \left[ \lambda a K_0(\lambda a) +2 K_1(\lambda a) - \frac{2}{\lambda a} \right] }{
+ \left[ \lambda a K_0(\lambda a) +  2 K_1(\lambda a) \right] }  \left[ \lambda a K_0(\lambda a) +  K_1(\lambda a) \right] \right] \\
+ &=& \left(\frac{1}{2\pi\lambda a}\right) \frac{ K_0(\lambda a)}{ \lambda a K_0(\lambda a) + 2 K_1(\lambda a)} 
+\end{eqnarray*}
+or
+\[
+f = U \frac{ 2\pi\lambda^2 a^2  K_2(\lambda a)}{K_0(\lambda a)}
+\]
+
+To simplify the velocity equation, we use
+\begin{eqnarray*}
+H_1(r) + \alpha Q_1(r) &=&  \left( \frac{1}{2\pi\lambda r} \right) \left[ \lambda r K_0(\lambda r) + K_1(\lambda r) - \frac{1}{\lambda r} \right] + \alpha \left(\frac{\lambda}{2\pi r}\right) \left[ \lambda r K_0(\lambda r) +  K_1(\lambda r) \right] \\
+&=&  \left( \frac{1}{2\pi\lambda r} \right) \left[ (1+\alpha\lambda^2) (\lambda r K_0(\lambda r) + K_1(\lambda r)) - \frac{1}{\lambda r} \right]  \\
+&=&  \left( \frac{1}{2\pi\lambda r} \right) \left[ \frac{2(\lambda r K_0(\lambda r) + K_1(\lambda r))}{\lambda^2 a^2 K_2(\lambda a)}  - \frac{1}{\lambda r} \right]
+\end{eqnarray*}
+which leads to
+\[
+f ( H_1(r) + \alpha Q_1(r) ) = \frac{U}{K_0(\lambda a)} \left( K_0(\lambda r) + K_2(\lambda r) - \frac{a^2}{r^2}K_2(\lambda a) \right)
+\]
+
+Also
+\begin{eqnarray*}
+H_2(r) + \alpha Q_2(r) &=& \left( \frac{1}{2\pi\lambda^2 r^4} \right) \left[ 2- \lambda^2 r^2 K_2(\lambda r)  \right]
+- \alpha \left(\frac{\lambda^2}{2\pi r^2}\right)  K_2(\lambda r) \\
+&=&  \frac{2}{2\pi\lambda^2 r^4} - (1+\alpha\lambda^2) \frac{K_2(\lambda r)}{2\pi r^2} \\
+&=&  \frac{2}{2\pi\lambda^2 r^4} \left( 1 - \frac{r^2 K_2(\lambda r)}{ a^2 K_2(\lambda a)}  \right)
+\end{eqnarray*}
+which leads to
+\[f r^2 ( H_2(r) + \alpha Q_2(r) ) = \frac{2}{K_0(\lambda a)}\left( \frac{a^2}{r^2} K_2(\lambda a) - K_2(\lambda r) \right)
+\]
+
+So the velocity becomes
+\begin{eqnarray}
+\mu u(\bx) &=& \frac{U}{K_0(\lambda a)} \left( K_0(\lambda r) + K_2(\lambda r) - \frac{a^2}{r^2}K_2(\lambda a) \right) 
++  \frac{2\cos^2\psi}{K_0(\lambda a)}\left( \frac{a^2}{r^2} K_2(\lambda a) - K_2(\lambda r) \right) \\
+\mu v(\bx) &=&  \frac{2\sin\psi\cos\psi}{K_0(\lambda a)}\left( \frac{a^2}{r^2} K_2(\lambda a) - K_2(\lambda r) \right)
+\end{eqnarray}
+
+
+
+\end{document}
+
+
+
+
+
+
+

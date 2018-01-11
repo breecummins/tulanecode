@@ -1,0 +1,39 @@
+========================================================================
+                    Pre Run Viscode Report:
+========================================================================
+
+Code Run Started on 3/23/2010 
+Code Parameters:           
+  Grid:                    
+       xmax      = 2.50000000 
+       xmin      = -2.50000000 
+       xpts      = 128      
+       ymax      = 2.50000000 
+       ymin      = -2.50000000 
+       ypts      = 128      
+       nlev      = 1      
+  Fluid:                   
+       Re        = 100.00000000 
+  Time:                    
+       T         = 1.00000000 
+       dt        = 0.00400000 
+       steps     = 250      
+       saves     = 5      
+       csindex   = 2      
+       save step = 0.20000000 
+
+Immersed Boundaries:       
+
+==========================================================================
+Dumping the Immersed Boundary Parameters!
+Number of IB points = 349 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+IB TYPE is 2D bubble 
+Radius of immersed boundary R           = 1.00000000 
+Modes in perturbation p                 = 3.00000000 
+Amplitude of the IB perturbation A      = 0.20000000 
+Spring Constant between adjacent points = 100.00000000 
+The immersed boundary point spacing     = 0.01954109 
+The tether spring Constant              = 0.00000000 
+=========================================================================
+

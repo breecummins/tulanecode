@@ -1,0 +1,461 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     14591,        452]
+NotebookOptionsPosition[     13452,        412]
+NotebookOutlinePosition[     13793,        427]
+CellTagsIndexPosition[     13750,        424]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"TextCell", "[", "\"\<Integral 1\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"a", ",", " ", "b", ",", " ", "c", ",", " ", "s", ",", " ", "f"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "s_", "]"}], " ", ":=", " ", 
+   RowBox[{"s", "*", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{
+       RowBox[{"a", "*", " ", 
+        RowBox[{"s", "^", "2"}]}], " ", "+", " ", 
+       RowBox[{"b", "*", "s"}], " ", "+", " ", "c"}], "]"}], "/", "2"}]}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"f", "[", "s", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"TextCell", "[", "\"\<Indefinite integral\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{"f", "[", "s", "]"}], ",", "s"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Simplify", "[", "%", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.484072703135448*^9, 3.484072788599432*^9}, {
+   3.484072844999854*^9, 3.4840728809776583`*^9}, {3.484073001369845*^9, 
+   3.484073003575452*^9}, {3.484073068026969*^9, 3.484073077201812*^9}, {
+   3.484482218800952*^9, 3.4844822226421537`*^9}, {3.484482287325499*^9, 
+   3.4844823802091923`*^9}, {3.484483428807234*^9, 3.4844834289326897`*^9}, 
+   3.484483529018157*^9, {3.5001319672060547`*^9, 3.5001320610277367`*^9}, {
+   3.500133933422862*^9, 3.500133938484704*^9}, {3.500134546184326*^9, 
+   3.500134549335923*^9}, {3.5001361106980877`*^9, 3.5001361503125896`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Integral 1"],
+  TextCell["Integral 1"]]], "Output",
+ CellChangeTimes->{
+  3.484072791317595*^9, 3.4840729609687777`*^9, 3.484073012671987*^9, 
+   3.484073090127324*^9, 3.484482328364395*^9, {3.484482358578493*^9, 
+   3.484482381759*^9}, 3.484483431069887*^9, 3.500132108840542*^9, 
+   3.5001339455778627`*^9, {3.500134515771541*^9, 3.5001345518496943`*^9}, {
+   3.5001361124800987`*^9, 3.5001361511747227`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "2"], " ", "s", " ", 
+  RowBox[{"Log", "[", 
+   RowBox[{"c", "+", 
+    RowBox[{"b", " ", "s"}], "+", 
+    RowBox[{"a", " ", 
+     SuperscriptBox["s", "2"]}]}], "]"}]}]], "Output",
+ CellChangeTimes->{
+  3.484072791317595*^9, 3.4840729609687777`*^9, 3.484073012671987*^9, 
+   3.484073090127324*^9, 3.484482328364395*^9, {3.484482358578493*^9, 
+   3.484482381759*^9}, 3.484483431069887*^9, 3.500132108840542*^9, 
+   3.5001339455778627`*^9, {3.500134515771541*^9, 3.5001345518496943`*^9}, {
+   3.5001361124800987`*^9, 3.500136151177352*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Indefinite integral"],
+  TextCell["Indefinite integral"]]], "Output",
+ CellChangeTimes->{
+  3.484072791317595*^9, 3.4840729609687777`*^9, 3.484073012671987*^9, 
+   3.484073090127324*^9, 3.484482328364395*^9, {3.484482358578493*^9, 
+   3.484482381759*^9}, 3.484483431069887*^9, 3.500132108840542*^9, 
+   3.5001339455778627`*^9, {3.500134515771541*^9, 3.5001345518496943`*^9}, {
+   3.5001361124800987`*^9, 3.500136151179236*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   RowBox[{"8", " ", 
+    SuperscriptBox["a", "2"], " ", 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"-", 
+       SuperscriptBox["b", "2"]}], "+", 
+      RowBox[{"4", " ", "a", " ", "c"}]}]]}]], 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"2", " ", "b", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["b", "2"], "-", 
+       RowBox[{"4", " ", "a", " ", "c"}]}], ")"}], " ", 
+     RowBox[{"ArcTan", "[", 
+      FractionBox[
+       RowBox[{"b", "+", 
+        RowBox[{"2", " ", "a", " ", "s"}]}], 
+       SqrtBox[
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"4", " ", "a", " ", "c"}]}]]], "]"}]}], "+", 
+    RowBox[{
+     SqrtBox[
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["b", "2"]}], "+", 
+       RowBox[{"4", " ", "a", " ", "c"}]}]], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", " ", "a", " ", "s", " ", 
+        RowBox[{"(", 
+         RowBox[{"b", "-", 
+          RowBox[{"a", " ", "s"}]}], ")"}]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["b", "2"]}], "+", 
+          RowBox[{"2", " ", "a", " ", 
+           RowBox[{"(", 
+            RowBox[{"c", "+", 
+             RowBox[{"a", " ", 
+              SuperscriptBox["s", "2"]}]}], ")"}]}]}], ")"}], " ", 
+        RowBox[{"Log", "[", 
+         RowBox[{"c", "+", 
+          RowBox[{"s", " ", 
+           RowBox[{"(", 
+            RowBox[{"b", "+", 
+             RowBox[{"a", " ", "s"}]}], ")"}]}]}], "]"}]}]}], ")"}]}]}], 
+   ")"}]}]], "Output",
+ CellChangeTimes->{
+  3.484072791317595*^9, 3.4840729609687777`*^9, 3.484073012671987*^9, 
+   3.484073090127324*^9, 3.484482328364395*^9, {3.484482358578493*^9, 
+   3.484482381759*^9}, 3.484483431069887*^9, 3.500132108840542*^9, 
+   3.5001339455778627`*^9, {3.500134515771541*^9, 3.5001345518496943`*^9}, {
+   3.5001361124800987`*^9, 3.50013615118262*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"TextCell", "[", "\"\<Integral 2\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"a", ",", " ", "b", ",", " ", "c", ",", " ", "s", ",", " ", "f"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "[", "s_", "]"}], " ", ":=", " ", 
+  RowBox[{"s", "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"a", "*", " ", 
+      RowBox[{"s", "^", "2"}]}], " ", "+", " ", 
+     RowBox[{"b", "*", "s"}], " ", "+", " ", "c"}], 
+    ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"f", "[", "s", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"TextCell", "[", "\"\<Indefinite integral\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "s", "]"}], ",", "s"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", "%", "]"}]}], "Input",
+ CellChangeTimes->{{3.484483903991494*^9, 3.484483922787611*^9}, {
+   3.48448395376645*^9, 3.484483955559166*^9}, 3.500134536825309*^9, {
+   3.500135972123868*^9, 3.50013600033427*^9}, 3.500136192365078*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Integral 2"],
+  TextCell["Integral 2"]]], "Output",
+ CellChangeTimes->{3.484484469395529*^9, 3.5001360086439962`*^9, 
+  3.500136209234782*^9}],
+
+Cell[BoxData[
+ FractionBox["s", 
+  RowBox[{"c", "+", 
+   RowBox[{"b", " ", "s"}], "+", 
+   RowBox[{"a", " ", 
+    SuperscriptBox["s", "2"]}]}]]], "Output",
+ CellChangeTimes->{3.484484469395529*^9, 3.5001360086439962`*^9, 
+  3.500136209237185*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Indefinite integral"],
+  TextCell["Indefinite integral"]]], "Output",
+ CellChangeTimes->{3.484484469395529*^9, 3.5001360086439962`*^9, 
+  3.5001362092390127`*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{"2", " ", "b", " ", 
+      RowBox[{"ArcTan", "[", 
+       FractionBox[
+        RowBox[{"b", "+", 
+         RowBox[{"2", " ", "a", " ", "s"}]}], 
+        SqrtBox[
+         RowBox[{
+          RowBox[{"-", 
+           SuperscriptBox["b", "2"]}], "+", 
+          RowBox[{"4", " ", "a", " ", "c"}]}]]], "]"}]}], 
+     SqrtBox[
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["b", "2"]}], "+", 
+       RowBox[{"4", " ", "a", " ", "c"}]}]]]}], "+", 
+   RowBox[{"Log", "[", 
+    RowBox[{"c", "+", 
+     RowBox[{"s", " ", 
+      RowBox[{"(", 
+       RowBox[{"b", "+", 
+        RowBox[{"a", " ", "s"}]}], ")"}]}]}], "]"}]}], 
+  RowBox[{"2", " ", "a"}]]], "Output",
+ CellChangeTimes->{3.484484469395529*^9, 3.5001360086439962`*^9, 
+  3.5001362092904043`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"TextCell", "[", "\"\<Integral 3\>\"", "]"}], "\n", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"a", ",", " ", "b", ",", " ", "c", ",", " ", "s", ",", " ", "f"}], 
+  "]"}], "\n", 
+ RowBox[{
+  RowBox[{"f", "[", "s_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"s", "^", "2"}], "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"a", "*", " ", 
+      RowBox[{"s", "^", "2"}]}], " ", "+", " ", 
+     RowBox[{"b", "*", "s"}], " ", "+", " ", "c"}], ")"}]}]}], "\n", 
+ RowBox[{"f", "[", "s", "]"}], "\n", 
+ RowBox[{"TextCell", "[", "\"\<Indefinite integral\>\"", "]"}], "\n", 
+ RowBox[{
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "s", "]"}], ",", "s"}], "]"}], ";"}], "\n", 
+ RowBox[{"Simplify", "[", "%", "]"}]}], "Input",
+ CellChangeTimes->{{3.484486055064625*^9, 3.48448605554348*^9}, 
+   3.4844905692715693`*^9, {3.500136445883933*^9, 3.5001364687009487`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Integral 3"],
+  TextCell["Integral 3"]]], "Output",
+ CellChangeTimes->{3.484486057463435*^9, 3.500136489035557*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  SuperscriptBox["s", "2"], 
+  RowBox[{"c", "+", 
+   RowBox[{"b", " ", "s"}], "+", 
+   RowBox[{"a", " ", 
+    SuperscriptBox["s", "2"]}]}]]], "Output",
+ CellChangeTimes->{3.484486057463435*^9, 3.500136489037956*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Indefinite integral"],
+  TextCell["Indefinite integral"]]], "Output",
+ CellChangeTimes->{3.484486057463435*^9, 3.500136489039913*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"2", " ", "a", " ", "s"}], "+", 
+   FractionBox[
+    RowBox[{"2", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["b", "2"], "-", 
+       RowBox[{"2", " ", "a", " ", "c"}]}], ")"}], " ", 
+     RowBox[{"ArcTan", "[", 
+      FractionBox[
+       RowBox[{"b", "+", 
+        RowBox[{"2", " ", "a", " ", "s"}]}], 
+       SqrtBox[
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"4", " ", "a", " ", "c"}]}]]], "]"}]}], 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"-", 
+       SuperscriptBox["b", "2"]}], "+", 
+      RowBox[{"4", " ", "a", " ", "c"}]}]]], "-", 
+   RowBox[{"b", " ", 
+    RowBox[{"Log", "[", 
+     RowBox[{"c", "+", 
+      RowBox[{"s", " ", 
+       RowBox[{"(", 
+        RowBox[{"b", "+", 
+         RowBox[{"a", " ", "s"}]}], ")"}]}]}], "]"}]}]}], 
+  RowBox[{"2", " ", 
+   SuperscriptBox["a", "2"]}]]], "Output",
+ CellChangeTimes->{3.484486057463435*^9, 3.5001364892473392`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"TextCell", "[", "\"\<Integral 4\>\"", "]"}], "\n", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"a", ",", " ", "b", ",", " ", "c", ",", " ", "s", ",", " ", "f"}], 
+  "]"}], "\n", 
+ RowBox[{
+  RowBox[{"f", "[", "s_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"s", "^", "3"}], "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"a", "*", " ", 
+      RowBox[{"s", "^", "2"}]}], " ", "+", " ", 
+     RowBox[{"b", "*", "s"}], " ", "+", " ", "c"}], ")"}]}]}], "\n", 
+ RowBox[{"f", "[", "s", "]"}], "\n", 
+ RowBox[{"TextCell", "[", "\"\<Indefinite integral\>\"", "]"}], "\n", 
+ RowBox[{
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "s", "]"}], ",", "s"}], "]"}], ";"}], "\n", 
+ RowBox[{"Simplify", "[", "%", "]"}]}], "Input",
+ CellChangeTimes->{
+  3.484487179132243*^9, 3.484490574191671*^9, {3.500136875200968*^9, 
+   3.500136896343759*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Integral 4"],
+  TextCell["Integral 4"]]], "Output",
+ CellChangeTimes->{3.484487180478189*^9, 3.484490591839841*^9, 
+  3.5001368995278587`*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  SuperscriptBox["s", "3"], 
+  RowBox[{"c", "+", 
+   RowBox[{"b", " ", "s"}], "+", 
+   RowBox[{"a", " ", 
+    SuperscriptBox["s", "2"]}]}]]], "Output",
+ CellChangeTimes->{3.484487180478189*^9, 3.484490591839841*^9, 
+  3.500136899529613*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Indefinite integral"],
+  TextCell["Indefinite integral"]]], "Output",
+ CellChangeTimes->{3.484487180478189*^9, 3.484490591839841*^9, 
+  3.5001368995307493`*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"a", " ", "s", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], " ", "b"}], "+", 
+      RowBox[{"a", " ", "s"}]}], ")"}]}], "-", 
+   FractionBox[
+    RowBox[{"2", " ", "b", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["b", "2"], "-", 
+       RowBox[{"3", " ", "a", " ", "c"}]}], ")"}], " ", 
+     RowBox[{"ArcTan", "[", 
+      FractionBox[
+       RowBox[{"b", "+", 
+        RowBox[{"2", " ", "a", " ", "s"}]}], 
+       SqrtBox[
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["b", "2"]}], "+", 
+         RowBox[{"4", " ", "a", " ", "c"}]}]]], "]"}]}], 
+    SqrtBox[
+     RowBox[{
+      RowBox[{"-", 
+       SuperscriptBox["b", "2"]}], "+", 
+      RowBox[{"4", " ", "a", " ", "c"}]}]]], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["b", "2"], "-", 
+      RowBox[{"a", " ", "c"}]}], ")"}], " ", 
+    RowBox[{"Log", "[", 
+     RowBox[{"c", "+", 
+      RowBox[{"s", " ", 
+       RowBox[{"(", 
+        RowBox[{"b", "+", 
+         RowBox[{"a", " ", "s"}]}], ")"}]}]}], "]"}]}]}], 
+  RowBox[{"2", " ", 
+   SuperscriptBox["a", "3"]}]]], "Output",
+ CellChangeTimes->{3.484487180478189*^9, 3.484490591839841*^9, 
+  3.5001368998000717`*^9}]
+}, Open  ]]
+},
+WindowSize->{699, 884},
+WindowMargins->{{29, Automatic}, {-20, Automatic}},
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 1492, 32, 118, "Input"],
+Cell[2062, 56, 450, 8, 27, "Output"],
+Cell[2515, 66, 580, 13, 46, "Output"],
+Cell[3098, 81, 466, 8, 27, "Output"],
+Cell[3567, 91, 1965, 60, 119, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5569, 156, 1053, 26, 118, "Input"],
+Cell[6625, 184, 181, 4, 27, "Output"],
+Cell[6809, 190, 246, 7, 46, "Output"],
+Cell[7058, 199, 201, 4, 27, "Output"],
+Cell[7262, 205, 844, 28, 80, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8143, 238, 884, 22, 118, "Input"],
+Cell[9030, 262, 154, 3, 27, "Output"],
+Cell[9187, 267, 243, 7, 51, "Output"],
+Cell[9433, 276, 172, 3, 27, "Output"],
+Cell[9608, 281, 1001, 33, 82, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10646, 319, 860, 23, 118, "Input"],
+Cell[11509, 344, 181, 4, 27, "Output"],
+Cell[11693, 350, 268, 8, 51, "Output"],
+Cell[11964, 360, 199, 4, 27, "Output"],
+Cell[12166, 366, 1270, 43, 82, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

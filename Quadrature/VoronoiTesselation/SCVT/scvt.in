@@ -1,0 +1,8 @@
+Number of generators on the sphere (n_gen):
+600
+Maximal number of iterations for Lloyd's method (max_iter): 
+10000
+Tolerance for Lloyd's method (eps)
+0.000001
+Should we place one node at the poles? (0-->no -1-->south 1--North)
+1

@@ -1,0 +1,11 @@
+I was concerned for a long time that the derivation of the Stokeslets would change if a continuous line of forces (a line integral) replaced the point force in the Stokes equations. My concern was that the forces varied over space and so would result in a nonzero divergence. However, the concern is unfounded, and here is why. 
+
+Let y(s) describe the line on which the forces lie parameterized by arclength s. Then the Stokes equations are 
+
+µ∆u(x) = grad p(x) - ∫ f(y(s)) phi(x - y(s)) ds.
+
+Now we take the divergence with respect to x (not with respect to y or s)! Since f depends only on y(s), the gradient with respect to x is zero. Thus the equation for pressure is the same as if we first solved for the point force and then integrated over the curve:
+
+∆p = ∫ (f(y(s)) · grad) phi(x - y(s)) ds.
+
+So there is no problem.

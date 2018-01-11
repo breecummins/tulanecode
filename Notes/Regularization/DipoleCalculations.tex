@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=0.75in,bottom=0.75in,left=0.5in,right=0.5in]{geometry}
+\usepackage{amsmath,amssymb,multirow,graphicx,parskip,relsize}
+\usepackage{wrapfig}
+
+\newcommand{\bee}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\baa}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\bees}[1]{\begin{equation*} #1 \end{equation*}}
+\newcommand{\baas}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\dd}[2]{\ensuremath{\frac{d #1}{d #2}}}
+
+\newcommand{\bx}{{\mathbf x}}
+\newcommand{\ba}{{\mathbf a}}
+\newcommand{\bg}{{\mathbf g}}
+\newcommand{\bl}{{\pmb \ell}}
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\br}{{\mathbf r}}
+\newcommand{\bv}{{\mathbf v}}
+\newcommand{\bq}{{\mathbf q}}
+\newcommand{\ff}{{\mathbf f}}
+\newcommand{\bS}{{\mathbf S}}
+\newcommand{\bI}{{\mathbf I}}
+\newcommand{\bA}{{\mathbf A}}
+\newcommand{\bG}{{\mathbf G}}
+\newcommand{\bF}{{\mathbf F}}
+\newcommand{\bP}{{\mathbf P}}
+\newcommand{\bQ}{{\mathbf Q}}
+\newcommand{\bU}{{\mathbf U}}
+
+\newcommand{\pe}{\phi_\epsilon}
+\newcommand{\Ge}{G_\epsilon}
+\newcommand{\Be}{B_\epsilon}
+\newcommand{\eps}{\epsilon}
+
+\title{Regularized Dipole Calculations}
+\author{Bree Cummins and Ricardo Cortez}
+
+
+\begin{document}
+
+\maketitle
+
+A dipole $\bv$ is the Laplacian of a Stokeslet $\bu$:
+%
+\begin{align}
+	\mu\bu &= -\ff \Delta\Be(r) + \left(\ff \cdot \nabla\right)\nabla \Be(r) \label{generalS} \\
+	\mu\bv = -\frac{\mu}{2}\Delta\bu &= -\bg \Delta\Delta\Be(r) + \left(\bg \cdot \nabla\right)\nabla \Delta\Be(r) , \label{generalD}
+\end{align}
+where, for the Stokes equations, 	
+\begin{align*}
+	\Delta \Ge &= \pe \\
+	\Delta \Be &= \Ge,
+\end{align*}
+and for the Brinkman equations, 	
+\begin{align*}
+	\Delta \Ge &= \pe \\
+	\Delta \Be -\alpha^2 \Be &= \Ge.
+\end{align*}
+In both cases, $\pe$ is a radially symmetric blob function (generally different in the Stokes and Brinkman cases) and the equations for $\Ge$ and $\Be$ are solved in free space. The Stokeslet strength $\ff$ and the dipole strength $\bg$ are constants that may be related in order to fulfill specific boundary conditions. For a sufficiently smooth blob function $\pe$, the Laplacian can be exchanged with the other derivatives to get the expression for the dipole in Eq.~\eqref{generalD}. Note that it isn't necessary to use the same blob function for both the Stokeslet and the dipole. One can choose blobs that give the simplest expressions for the regularized solutions.
+
+For the Stokes equations, Eqs.~\eqref{generalS}-\eqref{generalD} simplify to
+\begin{align*}
+	\mu\bu &= -\ff \Ge(r) + \left(\ff \cdot \nabla\right)\nabla \Be(r) \nonumber \\
+	\mu\bv  &= -\bg \pe(r) + \left(\bg \cdot \nabla\right)\nabla \Ge(r) , 
+\end{align*}
+and for Brinkman,
+\begin{align*}
+	\mu\bu &= -\ff (\Ge(r) + \alpha^2\Be(r)) + \left(\ff \cdot \nabla\right)\nabla \Be(r) \nonumber \\
+	\mu\bv &= -\bg (\pe(r) + \alpha^2\Ge(r) + \alpha^4\Be(r))) + \left(\bg \cdot \nabla\right)\nabla (\Ge(r) + \alpha^2\Be(r)). 
+\end{align*}
+
+In both cases, the Stokeslet can be written as 
+\begin{align}
+	\mu\bu &= -\ff H_1(r) + \left(\ff \cdot \bx \right)\bx H_2(r) \label{Stokeslet}, 
+\end{align}
+where for the Stokes equations, we have
+\begin{align*}
+	H_1(r) &= \frac{\Be'(r)}{r} - \Ge \nonumber \\
+	H_2(r) &= \frac{\Be''(r)}{r^2} - \frac{\Be'(r)}{r^3}, \nonumber
+\end{align*}
+and for Brinkman, we have
+\begin{align*}
+	H_1(r) &= \frac{\Be'(r)}{r} - \Ge - \alpha^2\Be(r) \nonumber \\
+	H_2(r) &= \frac{\Be''(r)}{r^2} - \frac{\Be'(r)}{r^3}. \nonumber
+\end{align*}
+Similarly, we may write the dipole as  
+\begin{align*}
+	\mu\bv &= -\bg D_1(r) + \left(\bg \cdot \bx \right)\bx D_2(r), 
+\end{align*}
+where for the Stokes equations, we have
+\begin{align}
+	D_1(r) &= \frac{\Ge'(r)}{r} - \pe \label{dipoleStokes1} \\
+	D_2(r) &= \frac{\Ge''(r)}{r^2} - \frac{\Ge'(r)}{r^3}. \label{dipoleStokes2}
+\end{align}
+and for Brinkman, we have
+\begin{align}
+	D_1(r) &= \frac{\Ge'(r) + \alpha^2\Be'(r)}{r} - \pe - \alpha^2\Ge(r) - \alpha^4\Be(r)\label{dipoleBrink1}\\
+	D_2(r) &= \frac{\Ge''(r) + \alpha^2\Be''(r)}{r^2} - \frac{\Ge'(r) + \alpha^2\Be'(r)}{r^3}. \label{dipoleBrink2}
+\end{align}
+
+The dipole can also be calculated by taking the Laplacian of Eq.~\eqref{Stokeslet} directly, which is a more complicated calculation since the term $\left(\ff \cdot \bx \right)\bx H_2(r)$ is a triple product. After some work, it can be shown that this approach yields expressions for the dipole functions 
+\begin{align}
+	D_1(r) &= \Delta H_1 + 2H_2 \label{dipole1}\\
+	D_2(r) &= \Delta H_2 + 4\frac{H_2'(r)}{r}. \label{dipole2}
+\end{align}
+This expression is independent of dimension. In two dimensions, the Laplacian of a radially symmetric function is $\Delta H = (rH')'/r$ and in three dimensions it is $\Delta H = (r^2H')'/r^2$. In both dimensions, the constants work out to give the same expression in terms of the Laplacian $\Delta$. Either  Eqs.~\eqref{dipoleStokes1}-\eqref{dipoleBrink2} or Eqs.~\eqref{dipole1}-\eqref{dipole2} may be used to calculate the dipoles, but the latter equations provide a uniform expression for the Stokes and Brinkman dipoles in terms of the appropriate $H_1$ and $H_2$ functions, which may be of use in programming. 
+
+It remains to discuss boundary conditions. Suppose we want a constant velocity on a sphere in three dimensions or a circle in two dimensions (which represents the cross-section of an infinite cylinder). We can achieve this by placing a regularized Stokeslet and dipole at the center of the circle/sphere of radius $a$:
+\begin{align*}
+	\mu\bU &= \mu\bu +\mu\bv \\
+	&= \ff\left( H_1(r) + cD_1(r)\right) + \left(\ff \cdot \bx \right)\bx \left(H_2(r)+cD_2(r)\right),
+\end{align*}
+where we have taken $\bg = c\ff$ for some constant $c$. To achieve a constant velocity $\bu_0$ on the boundary, the second term above must be zero when $r=a$, because the factor $\left(\ff \cdot \bx \right)\bx$ depends on the polar angle $\theta$ as well as the radius $r$ of a point. So we choose $c = -H_2(a)/D_2(a)$. Then we have
+\begin{align*}
+	\mu\bu_0 &= \ff\left( H_1(a) -\frac{H_2(a)}{D_2(a)}D_1(a)\right) \\
+	\Rightarrow \ff &= \frac{\mu\bu_0}{\left( H_1(a) -\dfrac{H_2(a)}{D_2(a)}D_1(a)\right)}
+\end{align*}
+for the force that gives the correct boundary condition. 
+
+We can model constant motion of a cylinder of radius $a$ in three dimensions by placing Stokeslets and dipoles along the centerline. We cannot fulfill the boundary conditions exactly, but we can make a leading order approximation. The approach taken here is part of slender body theory (see Cortez and Nicholas 2011), where the velocity contribution near the singularity is removed from the integral expression to give a separate local contribution. Because we are considering regularized forces here, there is no need to calculate the local term separately; we can simply find the strength of the dipole and integrate along the whole cylinder.
+
+We choose $q$ such that $a \ll q \ll 1$ and a point on the cylinder surface $\bx_0$. We then integrate over all distances on the centerline less than $q$ to calculate the velocity contribution due to local points at $\bx_0$:
+ \begin{align*}
+	\mu\bU(\bx_0) &=\int_{-q}^q \ff\left( H_1(r) + cD_1(r)\right) + \left(\ff \cdot \br \right)\br \left(H_2(r)+cD_2(r)\right) \, ds,
+\end{align*}
+where $\br=\bx_0-\bx(s)$, $r=||\br||=\sqrt{s^2+a^2}$, and $s$ parameterizes the centerline. Again we want to eliminate the term with angular dependence. Setting the second term equal to zero and linearizing $\br$ (see Cortez and Nicholas 2011), we have
+ \begin{align*}
+	c &= \frac{\mathlarger{\int}_{-q}^q \, H_2(\sqrt{s^2 + a^2}) \, ds}{\mathlarger{\int}_{-q}^q \, D_2(\sqrt{s^2 + a^2}) \, ds}.
+\end{align*}
+It is easy to find regularized Stokeslet and dipole pairs for which these integrals can be calculated exactly. However, we have not yet succeeded in finding a blob for the Brinkman/oscillatory Stokes equations which gives us closed form expressions.
+
+After calculating the integral, take a series expansion near $a=0$ after substituting in $\eps = da$ for an arbitrary constant $d$. Discard all terms of $O(a^2/q^2)$ and $O(a^4)$, then substitute back $d=\eps/a$ to get the constant $c$ for the dipole strength. The final expression should be independent of the choice of $q$. If this does not happen, one can try integrating from $-\infty$ to $\infty$ to get the leading order term. Series expansion would not be required in this case.
+
+
+
+
+
+
+
+  \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=0.75in,bottom=0.75in,left=0.5in,right=0.5in]{geometry}
+\usepackage{amsmath,amssymb,multirow,graphicx}
+\usepackage{wrapfig}
+
+\newcommand{\bee}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\baa}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\bees}[1]{\begin{equation*} #1 \end{equation*}}
+\newcommand{\baas}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\dd}[2]{\ensuremath{\frac{d #1}{d #2}}}
+
+\newcommand{\bx}{{\mathbf x}}
+\newcommand{\ba}{{\mathbf a}}
+\newcommand{\bl}{{\pmb \ell}}
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\bv}{{\mathbf v}}
+\newcommand{\bq}{{\mathbf q}}
+\newcommand{\ff}{{\mathbf f}}
+\newcommand{\bS}{{\mathbf S}}
+\newcommand{\bI}{{\mathbf I}}
+\newcommand{\bA}{{\mathbf A}}
+\newcommand{\bG}{{\mathbf G}}
+\newcommand{\bF}{{\mathbf F}}
+\newcommand{\bP}{{\mathbf P}}
+\newcommand{\bQ}{{\mathbf Q}}
+\newcommand{\bU}{{\mathbf U}}
+
+\newcommand{\pe}{\phi_\epsilon}
+\newcommand{\Ge}{G_\epsilon}
+\newcommand{\Be}{B_\epsilon}
+\newcommand{\eps}{\epsilon}
+\newcommand{\erf}{\text{erf}}
+
+\begin{document}
+	
+	Start with a Gaussian blob of integral 1:
+	\bees{
+	\pe(r) = \frac{e^{-r^2/\eps^2}}{\pi^{3/2}\eps^3}.
+	}
+	Solve $(r^2\Ge')'/r^2 = \pe$ (3D) to get 
+	\bees{
+	\Ge(r) = - \frac{\erf(r/\eps)}{4\pi r},
+	}
+	where $\erf(R)$ is the error function
+	\bees{
+	\erf(R) = \frac{2}{\sqrt{\pi}}\int_0^R e^{-x^2}\, dx.
+	}
+	The error function is zero at $R=0$ and approaches $1$ with Gaussian speed as $R\to\infty$. This implies that $\Ge$ is bounded at zero ($\lim_{r\to 0}\Ge = -1/(2\eps\pi^{3/2})$) and $\Ge \to -1/4\pi r$ as $r\to\infty$ (this is the singular case). 
+	
+	We now find $\Be(r)$. We have integral expressions for $\Be$ in terms of general blobs or regularized Green's functions:
+	\baas{
+	\Be(r) &=& \frac{1}{\alpha^2}\int_0^\infty \left( 1-\frac{e^{-\alpha x}\sinh(\alpha r)}{\alpha r} \right)x \pe(x) dx + \frac{1}{\alpha^3 r} \int_0^r \left( \sinh(\alpha(r-x))-\alpha(r-x)\right)x\pe(x) dx \\
+	\Be(r) &=& \frac{e^{\alpha r}}{r}\left(C_1 + \frac{1}{2\alpha}\int_0^r x e^{-\alpha x} \Ge(x) dx \right) + \frac{e^{-\alpha r}}{r}\left(C_2 - \frac{1}{2\alpha}\int_0^r x e^{\alpha x} \Ge(x) dx \right).
+	}	
+Plugging in our specific $\Ge$ and evaluating the second expression in Mathematica, we have
+\bees{
+\Be = \frac{e^{-\alpha r}}{r}\left( C_1 + \frac{e^{\alpha r}\erf(r/\eps)}{8\pi\alpha^2}-\frac{e^{\alpha^2\eps^2/4}\erf(r/\eps - \alpha\eps/2)}{8\pi\alpha^2}\right) + \frac{e^{\alpha r}}{r}\left( C_2 + \frac{e^{-\alpha r}\erf(r/\eps)}{8\pi\alpha^2}-\frac{e^{\alpha^2\eps^2/4}\erf(r/\eps + \alpha\eps/2)}{8\pi\alpha^2}\right).
+}
+To keep $\Be$ bounded at $r=0$, we enforce $C_1 = -C_2$. To give the appropriate behavior as $r\to\infty$, we choose
+\bees{
+C_2 = \frac{e^{\alpha^2\eps^2/4}}{8\pi\alpha}.
+}
+The behavior approaching infinity is then 
+\bees{
+\Be \to \frac{1-e^{-\alpha r}}{4\pi\alpha^2 r} + \frac{e^{-\alpha r}(1-e^{\alpha^2\eps^2/4})}{4\pi\alpha^2 r},
+}
+where the first term is the singular solution and the second is the largest error term. The form of the second term means that the slowest error decay rate is $e^{-\alpha r}/r$. This same decay rate is seen in the $H_1$ and $H_2$ functions. 
+
+It would be nicer if the decay rate was Gaussian, like the original blob choice. 
+Ricardo found a condition for this. Assume that $\pe(r)$ has compact support on $(0,\eps)$, and that $r>\eps$. Then,
+\bees{
+\alpha^2 \Be = \int_0^\eps x\pe(x)\left( 1- \frac{e^{-\alpha x}\sinh(\alpha r)}{\alpha r}\right) dx + \int_0^\eps x\pe(x)\left( \frac{\sinh(\alpha r - \alpha x)}{\alpha r} - 1 + \frac{x}{r}\right) dx.
+}
+We can rewrite $\sinh(\alpha r - \alpha x)$ to get some cancellation with the first integral:
+\baas{
+\sinh(\alpha r - \alpha x) &=& \cosh(\alpha x)\sinh(\alpha r) - \cosh(\alpha r)\sinh(\alpha x) \\
+&=& (\cosh(\alpha x)-\sinh(\alpha x))\sinh(\alpha r) - (\cosh(\alpha r) - \sinh(\alpha r))\sinh(\alpha x) \\
+&=& e^{-\alpha x}\sinh(\alpha r) -  e^{-\alpha r}\sinh(\alpha x).
+}
+Then 
+\baas{
+\alpha^2 \Be &=& \int_0^\eps x\pe(x)\left( 1- \frac{e^{-\alpha x}\sinh(\alpha r)}{\alpha r} + \frac{e^{-\alpha x}\sinh(\alpha r)}{\alpha r} -  \frac{e^{-\alpha r}\sinh(\alpha x)}{\alpha r}  - 1 + \frac{x}{r} \right) dx \\
+&=& \int_0^\eps x\pe(x)\left( \frac{x}{r}  -  \frac{e^{-\alpha r}\sinh(\alpha x)}{\alpha r} \right) dx \\
+&=& \frac{1}{r}\int_0^\eps x^2\pe(x)\left( 1 -  \frac{e^{-\alpha r}\sinh(\alpha x)}{\alpha x} \right) dx \\
+&=& \frac{1}{r}\int_0^\eps x^2\pe(x)\left( 1 - e^{-\alpha r} +  e^{-\alpha r}\left(1-\frac{\sinh(\alpha x)}{\alpha x}\right) \right) dx \\
+&=& \frac{1 - e^{-\alpha r}}{r}\int_0^\eps x^2\pe(x) dx + \frac{ e^{-\alpha r}}{r}\int_0^\eps x^2\pe(x)\left(1-\frac{\sinh(\alpha x)}{\alpha x} \right) dx.
+}
+Recall the integral of a radially symmetric function over $\mathbb{R}^3$ is 
+\bees{
+\int_0^{2\pi}\int_0^\pi\int_0^\infty \pe(r) r^2 \sin(\varphi) dr d\varphi d\theta = 4\pi\int_0^\infty \pe(r) r^2 dr.
+}
+So remembering that $\pe$ has an integral of 1 and a compact support of $(0,\eps)$, we have $\int_0^\eps x^2\pe(x) dx = 1/4\pi$ and 
+\bees{
+\alpha^2 \Be = \frac{1 - e^{-\alpha r}}{4\pi r} + \frac{ e^{-\alpha r}}{r}\int_0^\eps x^2\pe(x)\left(1-\frac{\sinh(\alpha x)}{\alpha x} \right) dx.
+}
+The first term is the singular limit and the second term represents the far field error. So to avoid a decay rate of $e^{-\alpha r}/r$, we require 
+\bees{
+\int_0^\eps x^2\pe(x)\left(1-\frac{\sinh(\alpha x)}{\alpha x} \right) dx = 0.
+}
+
+A blob with Gaussian decay that satisfies the above equation will add only Gaussian decay terms to the singular limit. The blob that fulfills this condition is 
+\bees{
+\psi_\eps = \frac{e^{-r^2/\eps^2}\left( \alpha^2\eps^4 + 2(e^{-\alpha^2\eps^2/4}-1)(2r^2 - 3\eps^2)\right)}{\pi^{3/2}\alpha^2\eps^7}.
+}
+This blob depends on $\alpha$, which is a physical parameter of the system. In some cases, this might be an undesirable trait. Some improvement to the convergence rate can achieved by zeroing out higher moments of the blob, which doesn't require dependence on $\alpha$. To see this, expand $\sinh(\alpha x)$ near zero:
+\baas{
+\frac{ e^{-\alpha r}}{r}\int_0^\eps x^2\pe(x)\left(1-\frac{\sinh(\alpha x)}{\alpha x} \right) dx &=& \frac{ e^{-\alpha r}}{r}\int_0^\eps x^2\pe(x)\left(1-\frac{\alpha x+(\alpha x)^3/3!+ (\alpha x)^5/5!-\dotsc}{\alpha x} \right) dx \\
+&=& \frac{ e^{-\alpha r}}{r}\int_0^\eps x^2\pe(x)\left(-(\alpha x)^2/3! - (\alpha x)^4/5!-\dotsc \right) dx \\
+&=& -\frac{ e^{-\alpha r}}{r}\left(\frac{\alpha^2}{3!}\int_0^\eps x^4\pe(x)dx + \frac{\alpha^4}{5!}\int_0^\eps x^6\pe(x)dx + \dotsc \right).
+} 
+The expansion is a sequence of moments of $\pe$. The second moment is $O(\eps^2)$ (why exactly?) and the third is $O(\eps^4)$, etc. So a zero second moment function would have a decay rate of $\eps^4e^{-\alpha r}/r$ instead of $\eps^2e^{-\alpha r}/r$.
+
+
+
+
+
+
+
+
+
+
+\end{document}

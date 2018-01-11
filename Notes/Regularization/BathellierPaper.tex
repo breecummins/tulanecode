@@ -1,0 +1,440 @@
+\documentclass[11pt]{amsart}
+\usepackage[top=0.5in,left=0.5in,right=0.5in,bottom=0.75in]{geometry}                
+\usepackage{amssymb,amsmath,graphicx}
+
+\newcommand{\vinf}{v_{\infty}}
+\newcommand{\om}{\omega}
+\newcommand{\ex}{\mathbf{e}_x}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\ff}{\mathbf{f}}
+\newcommand{\bn}{\mathbf{n}}
+
+\newcommand{\bee}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\baa}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\bees}[1]{\begin{equation*} #1 \end{equation*}}
+\newcommand{\baas}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+
+
+\newcommand{\dd}[2]{\ensuremath{\frac{\text{d} #1}{\text{d} #2}}}
+\newcommand{\ddd}[2]{\ensuremath{\frac{\text{d}^2 #1}{\text{d} {#2}^2}}}
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\pdd}[2]{\ensuremath{\frac{\partial^2 #1}{\partial {#2}^2}}}
+\newcommand{\pddd}[3]{\ensuremath{\frac{\partial^2 #1}{\partial #2 \partial #3}}}
+
+\begin{document}
+	
+	\section{Introduction}
+	The point of this work is to reconstruct the work of Bathellier et al. (2005) for the purposes of understanding their primary assumptions and comparing to our current efforts. Ultimately, the modeling goal is to consider a group of thin, finite hairs that are inserted on some kind of substrate and are driven by fluid flow. These hairs may possibly interact with each other through the fluid. In this model, the substrate will be ignored, only sinusoidal fluid flows will be considered, and there will be two distinct models governing the hairs. For the purpose of integrating forces along the hair length, the hairs will be finite, rotating slender rods. But for calculating the force per unit length on a hair, Bathellier et al. approximate hairs as infinite cylinders that oscillate back and forth horizontally through a small angle. We begin by calculating this force per unit length for a single hair, and will extend the model for multiple hairs in line with the fluid flow later on.
+	
+	\section{Perturbation field of a single hair}
+	Assume that there is an infinitely long, thin cylinder of diameter $d$ immersed in a periodic flow,
+\bee{
+\vinf e^{i\om t}\ex, \label{eqn:farvel}
+}
+where $\vinf$ is a real number that denotes the magnitude of the fluid motion, $\om$ is the angular frequency of the motion, and $\ex$ is a unit vector in the $x$-direction. The cylinder long axis extends in the $z$-direction and so the fluid motion induces cylinder oscillations back and forth through a small angle perpendicular to the long axis. The cylinder itself presents an obstacle which perturbs the fluid flow in its immediate vicinity. We assume that cylinder motion along directions other than $\ex$ and at frequencies other than $\om$ is negligible.  The cylinder velocity is denoted by
+\bee{
+v_h^* e^{i\om t}\ex, \label{eqn:hairvel}
+}
+where $v_h^*$ is a complex number that encodes the magnitude and phase of the cylinder or hair. Throughout the paper, the superscript $*$ will denote a complex constant. 
+
+Let's presume that fluid flow is negligible in the $z$ direction, so that we need only consider an $xy$ cross-section of the cylinder and the velocity field. By symmetry, this cross-section will be identical along the long axis of the cylinder. By interpolating between the velocity conditions in Eqs.~\eqref{eqn:farvel} and \eqref{eqn:hairvel}, we can express the fluid velocity field in terms of a dimensionless vector $\bD$:
+\baa{
+v_x^*(r,\psi)e^{i\om t} &=& \vinf e^{i\om t} - D_x^*(r,\psi)(\vinf e^{i\om t} - v_h^* e^{i\om t}) \nonumber \\
+v_y^*(r,\psi)e^{i\om t} &=& - D_y^*(r,\psi)(\vinf e^{i\om t} - v_h^*e^{i\om t}), \label{eqn:interp}
+}
+where the $x$ and $y$ subscripts denote components, not derivatives. In these equations, we have expressed dependencies in terms of polar coordinates in the $xy$ plane and we divided by the periodic factor $e^{i \om t}$ to remove time from the equations. The vector $\bD=[D_x^*,D_y^*]$ is complex valued with boundary conditions $\bD = [1,0]$ at the hair and $\bD \to [0,0]$ at infinity. $\bD$ is a measure of the perturbation of a single hair on the flow. By linearly combining the perturbation fields caused by hairs, we may predict what the velocity field will look like and how the hairs will move.  
+
+But before we can move on to these combinations, we need to know the functional form of $\bD$. We begin by calculating $v_x^*$ and $v_y^*$ following the work in Section III of Stokes~\cite{stokes}. We here make extensive use of notes kindly provided by Brice Bathellier.
+	
+\subsection{Constructing the equations}
+
+	We assume that we are in a low Reynolds number regime so that the flow may be modeled by the unsteady Stokes equations:
+	\baa{
+	\rho\frac{\partial\bv}{\partial t} - \mu\Delta\bv &=& -\nabla p \label{eqn:uss} \\
+	\nabla \cdot \bv &=& 0 \label{eqn:div} \\
+	\bv &=& v_h^* e^{i\om t}\ex \text{ when } r = d/2 \label{eqn:ussBC1} \\
+	\bv &\to& \vinf e^{i\om t}\ex \text{ as } r \to \infty \label{eqn:ussBC2} 
+	}
+where we seek a solution of the form $\bv = [v_x^*(x,y),v_y^*(x,y)]e^{i\om t}$. The divergence equation \eqref{eqn:div} ensures that there is a function $\chi \in C^2(\mathbb{R}^2\setminus\{r<d/2\})$ such that 
+\baa{\pd{\chi}{x} &=& v_y^*e^{i\om t}\nonumber \\
+-\pd{\chi}{y} &=& v_x^*e^{i\om t}. \label{eqn:differential}
+}
+ To see that this is true, take the $y$ derivative of the first equation and the $x$ derivative of the second to get
+\bees{
+	\pddd{\chi}{y}{x} - \pddd{\chi}{x}{y} = \pd{v_y^*}{y}e^{i\om t} + \pd{v_x^*}{x}e^{i\om t} = \nabla \cdot \bv = 0.
+}
+In other words, $v_x^*\text{d}y - v_y^*\text{d}x$ is an exact differential. The scalar function $\chi$ is commonly called the stream function. Substituting $\chi$ into Eq.~\eqref{eqn:uss}, we have
+\baas{
+\rho\pd{}{t}\pd{\chi}{y} - \mu\Delta \pd{\chi}{y} &=& \pd{p}{x} \\
+\rho\pd{}{t}\pd{\chi}{x} - \mu\Delta \pd{\chi}{x} &=& -\pd{p}{y} 
+}
+Taking the $y$ derivative of the first equation, the $x$ derivative of the second equation (i.e., taking the curl of the vector equation), and assuming $p \in C^2(\mathbb{R}^2\setminus\{r<d/2\})$, we have
+\bee{
+\left(\Delta - \frac{1}{\nu} \pd{}{t} \right)\Delta\chi = 0 \label{eqn:chi}
+}
+where $\nu = \mu/\rho$ is the kinematic viscosity of the fluid (referred to by Stokes as the ``index of friction''). It is clear that a solution to either
+\baa{
+\Delta\chi_1 &=& 0 \label{eqn:chi1}\\
+\left(\Delta - \frac{1}{\nu} \pd{}{t} \right)\chi_2 &=& 0 \label{eqn:chi2}
+}
+will satisfy Eq.~\eqref{eqn:chi}. Furthermore, if we assume that $\chi_k$ are explicitly time dependent, $\chi_k \equiv \chi_k(x,y,t)$, then the solutions $\chi_1$ and $\chi_2$ are linearly independent by virtue of the time derivative in Eq.~\eqref{eqn:chi2}. In fact it is logical to choose $\chi_k \equiv \chi_k(x,y)e^{i\om t}$ based on our boundary conditions (Stokes~\cite{stokes} gives a more in depth reason for ignoring steady portions of the flow on pg. 13). Under the assumption of linear independence, we write $\chi = \chi_1 + \chi_2$ and solve Eqs.~\eqref{eqn:chi1} and \eqref{eqn:chi2} independently. Lastly, due to the cylindrical boundary condition, we solve for $\chi_k$ in polar coordinates $(r,\psi)$.
+
+\subsection{Boundary conditions}
+
+Stokes decided to seek solutions of the form
+\bee{
+\chi = \left(f(r)\sin\psi\right) e^{i\om t}, \label{eqn:sepvars}
+}
+where $f(r) = f_1(r) + f_2(r)$. The two $f_k(r)$ come from the solutions to Eqs.~\eqref{eqn:chi1} and \eqref{eqn:chi2} through $\chi_k = \left(f_k(r)\sin\psi\right) e^{i\om t}$.
+
+The exponential term in Eq.~\eqref{eqn:sepvars} has already been explained. Splitting $\chi(r,\psi)$ into a separable function of the form $f(r)\sin\psi$ allows a significant simplification of the boundary conditions and of Eqs.~\eqref{eqn:chi1} and \eqref{eqn:chi2}.\footnote{B.B. points out that if one tried a full separation of variables approach, one would get factors of $\sin(n\psi)$ that would be subsequently pruned down by the specific boundary conditions.} The boundary conditions simplify as follows:
+\baas{
+v_h^*e^{i \om t} &=& v_x^*e^{i \om t}\left\vert_{r=d/2}\right.\\
+&=& -\pd{\chi}{y} \left\vert_{r=d/2}\right.\\
+&=& -\pd{\chi}{r}\pd{r}{y} - \pd{\chi}{\psi}\pd{\psi}{y} \left\vert_{r=d/2}\right.\\
+&=& -\pd{\chi}{r}\sin\psi - \pd{\chi}{\psi}\frac{\cos\psi}{r} \left\vert_{r=d/2}\right.\\
+&=& -\left(f'(d/2)\sin^2\psi\right) e^{i \om t} - \left(\frac{f(d/2)}{d/2}\cos^2\psi\right) e^{i \om t}.
+}
+To take advantage of the trig identity $\cos^2\psi + \sin^2\psi = 1$, we require
+\bee{
+f'(d/2) = \frac{f(d/2)}{d/2} = -v_h^* \label{eqn:cylBCs}.
+}
+This automatically fulfills the boundary condition $0 = v_y^* = f'(d/2)\sin\psi\cos\psi - f(d/2)/(d/2)\cos\psi\sin\psi$ at the cylinder. By a similar argument, the infinite boundary condition for $v_x^*$ becomes
+\bee{
+\lim\limits_{r\to\infty} f'(r) =  \lim\limits_{r\to\infty} \frac{f(r)}{r} = -\vinf \label{eqn:infBCs},
+}
+which fulfills $v_y^*e^{i \om t} = \partial\chi/\partial x \to 0$ as well.
+
+\subsection{Solving the equations}
+
+We begin with Eq.~\ref{eqn:chi1}:
+\baas{
+\left( \frac{1}{r}\pd{}{r}\left(r\pd{}{r}\right) + \frac{1}{r^2}\pdd{}{\psi} \right) \left(f_1(r)\sin\psi\right) e^{i \om t} &=& 0 \\
+\Rightarrow \frac{1}{r}\pd{}{r}\left(rf'_1(r)\right)\sin\psi - \frac{f_1(r)}{r^2}\sin\psi &=& 0 \\
+\Rightarrow \frac{f'_1(r) + rf''_1(r)}{r} - \frac{f_1(r)}{r^2} &=& 0 \\
+\Rightarrow r^2f''_1(r) + rf'_1(r) - f_1(r) &=& 0.
+}
+In the above, we divided by $ e^{i \om t}\sin\psi$ to obtain the equation solely in the radial coordinate. It is easy to check that 
+\bees{
+f_1(r) = \frac{A}{r} + Br
+}	
+for constants $A$ and $B$ that fulfill the boundary conditions.
+
+Now Eq.~\ref{eqn:chi2}:
+\baas{
+\left( \frac{1}{r}\pd{}{r}\left(r\pd{}{r}\right) + \frac{1}{r^2}\pdd{}{\psi} - \frac{1}{\nu} \pd{}{t} \right) \left(f_2(r)\sin\psi\right) e^{i \om t} &=& 0 \\
+\Rightarrow \frac{1}{r}\pd{}{r}\left(rf'_2(r)\right)\sin\psi e^{i \om t} - \frac{f_2(r)}{r^2}\sin\psi e^{i \om t} - \frac{i \om}{\nu} \left(f_2(r)\sin\psi\right) e^{i \om t} &=& 0 \\
+\Rightarrow \frac{f'_2(r) + rf''_2(r)}{r} - \frac{f_2(r)}{r^2} - \frac{i \om}{\nu} f_2(r) &=& 0 \\
+\Rightarrow r^2f''_2(r) + rf'_2(r) - (1 + \frac{i \om}{\nu}r^2) f_2(r) &=& 0.
+}
+This equation is almost a modified Bessel equation. If we let $\lambda^2 = i\om/\nu$, allow the variable change $R = \lambda r$, and apply the chain rule, our equation becomes
+\baas{
+\left(\frac{R}{\lambda}\right)^2 \lambda^2 f_2''(R) + \frac{R}{\lambda}\lambda f_2'(R) - (1 + R^2) f_2(R) &=& 0 \\
+R^2f_2''(R) + R f_2'(R) - (1 + R^2) f_2(R) &=& 0.
+}
+This equation is now exactly the modified Bessel equation of order 1, and is satisfied by
+\bees{
+f_2(r) = C K_1(\lambda r ) + D I_1(\lambda r).
+}
+
+So we have in total
+\baas{
+f(r) &=& \frac{A}{r} + Br + C K_1(\lambda r ) + D I_1(\lambda r) \\
+f'(d/2) &=& \frac{f(d/2)}{d/2} = -v_h^* \\
+\lim\limits_{r\to\infty} f'(r) &=&  \lim\limits_{r\to\infty} \frac{f(r)}{r} =-\vinf
+ }
+and we must now seek the values of the constants $A$, $B$, $C$, and $D$. 
+
+Consider first the limits at infinity. Since $I_1$ grows exponentially with $r$, $I_1/r \to \infty$ as $r \to \infty$, and we must choose $D \equiv 0$ to ensure a finite limit. Now,
+\bees{
+f'(r) = -\frac{A}{r^2} + B + \lambda C K'_1(\lambda r).
+} 
+Since $K'_1(z) = -(K_0(z) + K_2(z))/2$ [Jeffrey and Zwilliger, pg 919], $K'_1(\lambda r)$ tends to zero at infinity, as do all modified Bessel functions of the second kind. This gives us $B = -\vinf$, which also fulfills the infinite limit for $f(r)/r$.
+
+At the cylinder,
+\baas{
+f(d/2) &=& \frac{2A}{d} - \frac{d\vinf}{2} + CK_1(d\lambda/2) = -\frac{d v_h^*}{2} \\
+\Rightarrow A &=& \frac{d}{2}\left[ \frac{d(\vinf-v_h^*)}{2} - C K_1(d\lambda/2)\right]
+}
+and making use of the other boundary condition with $A$ as above,
+\baas{
+f'(d/2) &=& -\frac{4A}{d^2} - \vinf + \lambda C K'_1(d\lambda/2) = -v_h^* \\
+\Rightarrow C &=& \frac{d(\vinf-v_h^*)}{(d\lambda/2)K'_1(d\lambda/2) + K_1(d\lambda/2)} \\
+\Rightarrow A &=& \frac{d^2}{4}(\vinf-v_h^*)\frac{(d\lambda/2)K'_1(d\lambda/2) - K_1(d\lambda/2)}{(d\lambda/2)K'_1(d\lambda/2) + K_1(d\lambda/2)}.
+}
+There are some identities that will help reduce the above equations [Jeffrey and Zwilliger, pg 919]:
+\baas{
+zK'_1(z) + K_1(z) &=& -zK_0(z) \\
+zK'_1(z) - K_1(z) &=& -zK_2(z).
+}
+With these,
+\bees{
+A = \frac{d^2}{4}(\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)}, \qquad C = -\frac{2(\vinf-v_h^*)}{\lambda K_0(d\lambda/2)},
+}
+and our final solution is 
+\bee{
+\chi = \left[ \frac{d^2(\vinf-v_h^*)}{4r}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} - \vinf r - \frac{2(\vinf-v_h^*)}{\lambda K_0(d\lambda/2)}K_1(\lambda r)\right]\sin\psi\,e^{i\om t}. \label{eqn:chisoln}
+}
+
+From this we may calculate the components of the velocity field $\bv$. 
+\begin{align*}
+v_x^* e^{i \om t} &= -\pd{\chi}{y} = -\pd{\chi}{r}\sin\psi - \pd{\chi}{\psi}\frac{\cos\psi}{r} \nonumber \\
+&= -f'(r)\sin^2\psi\,e^{i\om t} - \frac{f(r)}{r}\cos^2\psi\,e^{i\om t} \nonumber \\
+&= e^{i\om t}\left[ \left( \frac{d^2(\vinf-v_h^*)}{4r^2}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf + \frac{2(\vinf-v_h^*)}{\lambda K_0(d\lambda/2)}\lambda K'_1(\lambda r) \right)\sin^2\psi \right. \nonumber \\
+& \quad \left. + \left( -\frac{d^2(\vinf-v_h^*)}{4r^2}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf + \frac{2(\vinf-v_h^*)}{\lambda r K_0(d\lambda/2)}K_1(\lambda r) \right)\cos^2\psi \right] \nonumber \\
+&= \vinf e^{i\om t} - (\vinf-v_h^*)e^{i\om t}\left[ -\left( \frac{d^2}{4r^2}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \frac{2K'_1(\lambda r)}{ K_0(d\lambda/2)} \right)\sin^2\psi + \left( \frac{d^2}{4r^2}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} - \frac{2K_1(\lambda r)}{\lambda r K_0(d\lambda/2)} \right)\cos^2\psi \right]. 
+\end{align*}
+\textbf{This is exactly the expression in the 2010 erratum to Bathellier's 2005 paper.} However, I want to put this in a form that is useful to compare with the singularity solution method, which is written with a $\cos^2\psi$ term, but not a $\sin^2\psi$ term. Using that $K_1'(\lambda r) = -K_1(\lambda r)/(\lambda r) - K_0(\lambda r)$, and writing $\sin^2\psi = 1 - \cos^2\psi$, we find that 
+\begin{align*}
+v_x^* e^{i \om t} &= \vinf e^{i\om t} - (\vinf-v_h^*)e^{i\om t}\left[ \left( -\frac{d^2}{4r^2}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \frac{2K_1(\lambda r)}{\lambda r K_0(d\lambda/2)} \right)(1-2\cos^2\psi)  + \frac{2K_0(\lambda r)}{ K_0(d\lambda/2)}\sin^2\psi \right].
+\end{align*}
+Then using $2K_1(\lambda r)/(\lambda r) = -K_0(\lambda r) + K_2(\lambda r)$  we have
+\begin{align}
+v_x^* e^{i \om t} &= \vinf e^{i\om t} - \frac{(\vinf-v_h^*)}{K_0(d\lambda/2)}e^{i\om t}\left[ -\frac{d^2}{4r^2}K_2(d\lambda/2) + K_2(\lambda r) + K_0(\lambda r) + \cos^2\psi\left(\frac{d^2}{2r^2}K_2(d\lambda/2) -2K_2(\lambda r) \right) \right] \nonumber \\
+&= \vinf e^{i\om t} - \frac{(\vinf-v_h^*)}{K_0(d\lambda/2)}e^{i\om t}\left[ -\frac{d^2}{4r^2}K_2(d\lambda/2) + K_2(\lambda r) + K_0(\lambda r) \right ] - \frac{(\vinf-v_h^*)2\cos^2\psi}{K_0(d\lambda/2)}e^{i\om t} \left(\frac{d^2}{4r^2}K_2(d\lambda/2) -K_2(\lambda r) \right) \label{eqn:vx}
+\end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The formula for the $y$-component of velocity is similar to the third term in the above equation and is found using $-K_1'(\lambda r) = K_1(\lambda r)/(\lambda r) + K_0(\lambda r)$ and $K_2(\lambda r) = 2K_1(\lambda r)/(\lambda r) + K_0(\lambda r)$:
+\begin{align}
+v_y^* e^{i \om t} &= \pd{\chi}{x} = \pd{\chi}{r}\cos\psi - \pd{\chi}{\psi}\frac{\sin\psi}{r} \nonumber\\
+&= f'(r)\sin\psi\cos\psi\,e^{i\om t} - \frac{f(r)}{r}\cos\psi\sin\psi\,e^{i\om t} \nonumber\\
+&= \left( f'(r) - \frac{f(r)}{r} \right)\frac{\sin2\psi}{2}e^{i\om t} \nonumber\\ 
+&= \left( -\frac{d^2(\vinf-v_h^*)}{2r^2}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} - \frac{2(\vinf-v_h^*)}{K_0(d\lambda/2)}K'_1(\lambda r) + \frac{2(\vinf-v_h^*)}{\lambda r K_0(d\lambda/2)}K_1(\lambda r) \right)\frac{\sin2\psi}{2}e^{i\om t} \nonumber\\
+&= \frac{(\vinf-v_h^*)\sin2\psi}{K_0(d\lambda/2)}e^{i\om t}\left( -\frac{d^2}{4r^2}K_2(d\lambda/2) - K'_1(\lambda r) + \frac{K_1(\lambda r)}{\lambda r } \right) \nonumber\\
+&= -\frac{(\vinf-v_h^*)\sin2\psi}{K_0(d\lambda/2)}e^{i\om t}\left( \frac{d^2}{4r^2}K_2(d\lambda/2) - K_2(\lambda r)\right). \label{eqn:vy}
+\end{align}
+
+\textbf{This expression is identical to the one in the Appendix of Bathellier et al. (2005).} The formulas for $\bD$ may be easily found using Eq.~\eqref{eqn:interp} and examining the expressions above.
+
+\subsection{Calculating the forces}
+	We now calculate the drag force on a single hair caused by the incident fluid flow. The drag force, or surface traction, is given in terms of Cauchy's stress tensor: 
+	\bee{
+	\ff(t) = \frac{d}{2}\int_0^{2\pi} \sigma \cdot \hat{\bn} \,d\psi
+	}
+	where $\hat{\bn}$ is the outward facing normal and $\sigma$ is the stress tensor: $\sigma = -p\delta_{ij} + \mu \left( \pd{u_i}{x_j} + \pd{u_j}{x_i} \right)$, assuming summation over repeated indices, and denoting velocity components by $u_k$ and Cartesian plane coordinates by $x_k$. Using the notation in this paper:
+	\baas{
+	\ff(t) &=& \frac{d}{2}\int_0^{2\pi} \begin{pmatrix} -p + 2\mu \pd{v_x^* e^{i \om t}}{x} & \mu\left( \pd{v_x^* e^{i \om t}}{y} + \pd{v_y^* e^{i \om t}}{x}\right) \\ \mu\left( \pd{v_x^* e^{i \om t}}{y} + \pd{v_y^* e^{i \om t}}{x}\right) & -p + 2\mu \pd{v_y^* e^{i \om t}}{y} \end{pmatrix} \begin{pmatrix} \cos\psi \\ \sin\psi \end{pmatrix} \,d\psi \\
+	&=& \frac{d}{2}\int_0^{2\pi} \begin{pmatrix} (-p + 2\mu \pd{v_x^* e^{i \om t}}{x})\cos\psi + \mu\left( \pd{v_x^* e^{i \om t}}{y} + \pd{v_y^* e^{i \om t}}{x}\right)\sin\psi \\ \mu\left( \pd{v_x^* e^{i \om t}}{y} + \pd{v_y^* e^{i \om t}}{x}\right)\cos\psi + (-p + 2\mu \pd{v_y^* e^{i \om t}}{y})\sin\psi \end{pmatrix} \,d\psi.
+	} 
+	
+	In order to get an expression for the drag force, we require closed form expressions for the pressure $p$ and for the derivatives of $v_x^*$ and $v_y^*$. We begin with the pressure.
+	
+	\subsubsection{Finding the pressure.}
+		
+		We ultimately need to calculate $-\frac{d}{2}\int_0^{2\pi} p(r,\psi,t) \cos\psi \,d\psi$ (and also $-\frac{d}{2}\int_0^{2\pi} p(r,\psi,t) \sin\psi \,d\psi$). If we integrate by parts, then we only need to recover a partial derivative of $p$: let $u=p \Rightarrow du = \pd{p}{\psi}d\psi$ and $dv = \cos\psi d\psi \Rightarrow v = \sin\psi$. Then 
+		\bees{
+		-\frac{d}{2}\int_0^{2\pi} p(r,\psi,t) \cos\psi \,d\psi = \frac{d}{2}\int_0^{2\pi} \pd{p}{\psi} \sin\psi \, d\psi
+		}
+		and similarly, $-\frac{d}{2}\int_0^{2\pi} p(r,\psi,t) \sin\psi \,d\psi = -\frac{d}{2}\int_0^{2\pi} \pd{p}{\psi} \cos\psi \, d\psi$.
+		
+		So we actually seek $\pd{p}{\psi}$. Recall the original unsteady Stokes equations:
+		\baas{
+		\pd{p}{x} &=& (-\rho\pd{}{t} + \mu \Delta) v_x^*e^{i\om t} \\
+		\pd{p}{y} &=& (-\rho\pd{}{t} + \mu \Delta) v_y^*e^{i\om t} .
+		}
+		Then the differential form of $p$ is
+		\baas{
+		dp &=& \pd{p}{x}dx + \pd{p}{y}dy \\
+		&=& (-\rho \pd{}{t} + \mu \Delta ) (v_x^*e^{i \om t} dx + v_y^* e^{i \om t} dy) \\ 
+		&=& (-\rho \pd{}{t} + \mu \Delta ) (-\pd{\chi}{y}dx + \pd{\chi}{x}dy) \\
+		&=& (-\rho \pd{}{t} + \mu \Delta ) (-\pd{(\chi_1+\chi_2)}{y}dx + \pd{(\chi_1+\chi_2)}{x}dy).		
+		}
+		Now recall that $(-\rho \pd{}{t} + \mu \Delta )\chi_2 = 0$ and $\Delta \chi_1 = 0$ and change to polar coordinates:
+		\baas{
+		dp &=& -\rho \pd{}{t}(-\pd{\chi_1}{y}dx + \pd{\chi_1}{x}dy) \\
+		&=& -\rho \pd{}{t} \left( \left[ -\pd{\chi_1}{r}\sin\psi - \pd{\chi_1}{\psi}\frac{\cos\psi}{r}\right]\left( \cos\psi dr -r\sin\psi d\psi \right) + \left[ \pd{\chi_1}{r}\cos\psi - \pd{\chi_1}{\psi}\frac{\sin\psi}{r}\right]\left( \sin\psi dr +r\cos\psi d\psi \right)\right) \\
+		&=& -\rho \pd{}{t} \left( \pd{\chi_1}{r}r d\psi - \pd{\chi_1}{\psi}\frac{1}{r} dr\right) \\
+		&=& -r\rho \pddd{\chi_1}{t}{r} d\psi + \frac{\rho}{r} \pddd{\chi_1}{t}{\psi} dr.
+		}
+		This is pressure in its polar differential form, so that we have 
+		\baas{
+		\pd{p}{\psi} &=& -r\rho \pddd{\chi_1}{t}{r} \\
+		&=& -r\rho\pddd{}{t}{r}\left(\frac{A}{r} - \vinf r \right)\sin \psi e^{i \om t},
+		}
+		where the expression for $\chi_1$ is the first two terms in Eq.~\eqref{eqn:chisoln}, leaving the ugly constant $A$ out for the moment. Continuing, we find
+		\baas{
+		\pd{p}{\psi} &=& -r i \om \rho \left(-\frac{A}{r^2} - \vinf \right)\sin \psi e^{i \om t} \\
+		&=& i \om \rho \left(\frac{d^2}{4r}(\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf r \right)\sin \psi e^{i \om t} \\
+		\Rightarrow \left . \pd{p}{\psi}\right\vert_{r=d/2} &=& \frac{i \om \rho d}{2}\left((\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right)\sin \psi e^{i \om t}
+		}
+		\textbf{This result matches the work that Bathellier does in his personal notes for the special case of $v_h^*$ = 0.}
+		
+		
+		Then, 
+		\baas{
+		\frac{d}{2}\int_0^{2\pi} \pd{p}{\psi} \sin\psi \, d\psi &=& \frac{d}{2}\frac{i \om \rho d}{2}\left((\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right) e^{i \om t}\int_0^{2\pi} \sin^2 \psi \,d\psi \\
+		&=&  \frac{i \om \rho \pi d^2}{4}\left((\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right) e^{i \om t}.
+		}
+		This is the $x$-component of the drag force due solely to pressure. For the $y$-component, we similarly have
+		\baas{
+		-\frac{d}{2}\int_0^{2\pi} \pd{p}{\psi} \cos\psi \, d\psi &=& -\frac{d}{2}\frac{i \om \rho d}{2}\left((\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right) e^{i \om t}\int_0^{2\pi} \cos\psi \sin \psi \,d\psi \\
+		&=& 0,
+		}
+		so there is no drag due to pressure in the $y$ direction.
+		
+		If we want to know the pointwise values of the traction along the surface, then we still need the pressure function itself. Integrating $\partial p/\partial \psi$, we get
+		\baa{
+		p(r,\psi,t) &=& -i\om\rho\left(\frac{d^2}{4r}(\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf r \right)\cos\psi e^{i\om t} \\
+		\Rightarrow p(d/2,\psi,t) &=& -\frac{\mu \lambda^2 d}{2}\left( (\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right) \cos\psi e^{i\om t}, \label{eqn:pressure}
+		}
+		and it is easy to check that the same expression results from the partial derivative with respect to $r$ (from the polar differential form of $p$): $\partial p/\partial r = \frac{\rho}{r} \pddd{\chi_1}{t}{\psi}$.
+		
+	\subsubsection{Finding the partial derivatives of the velocity components.} To calculate the drag force we need to evaluate the following integrals:
+	\baas{
+	 I_x &=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} 2\pd{v_x^*}{x}\cos\psi + \left( \pd{v_x^*}{y} + \pd{v_y^*}{x} \right)\sin \psi \, d\psi \\
+	 I_y &=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} 2\pd{v_y^*}{y}\sin\psi + \left( \pd{v_x^*}{y} + \pd{v_y^*}{x} \right)\cos \psi \, d\psi.
+	}
+	We change these to polar coordinates:
+	\baas{
+	I_x &=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} 2\left( \pd{v_x^*}{r}\cos\psi - \pd{v_x^*}{\psi}\frac{\sin\psi}{r} \right)\cos\psi + \left( \pd{v_x^*}{r}\sin\psi + \pd{v_x^*}{\psi}\frac{\cos\psi}{r} + \pd{v_y^*}{r}\cos\psi - \pd{v_y^*}{\psi}\frac{\sin\psi}{r}  \right)\sin \psi \, d\psi \\
+	&=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} \pd{v_x^*}{r} (\cos^2\psi+1) - \pd{v_x^*}{\psi}\frac{\sin\psi\cos\psi}{r} + \pd{v_y^*}{r}\sin\psi\cos\psi - \pd{v_y^*}{\psi}\frac{\sin^2\psi}{r} \, d\psi \\
+	I_y &=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} 2\left( \pd{v_y^*}{r}\sin\psi + \pd{v_y^*}{\psi}\frac{\cos\psi}{r} \right)\sin\psi + \left( \pd{v_x^*}{r}\sin\psi + \pd{v_x^*}{\psi}\frac{\cos\psi}{r} + \pd{v_y^*}{r}\cos\psi - \pd{v_y^*}{\psi}\frac{\sin\psi}{r}  \right)\cos \psi \, d\psi \\
+	&=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} \pd{v_y^*}{r}(\sin^2\psi+1) + \pd{v_y^*}{\psi}\frac{\sin\psi\cos\psi}{r} + \pd{v_x^*}{r} \sin\psi\cos\psi + \pd{v_x^*}{\psi}\frac{\cos^2\psi}{r} \, d\psi.
+	}
+	
+	It remains to find the polar partial derivatives on the cylinder. The partials with respect to $\psi$ are both 0. From Eqs.~\eqref{eqn:vx} and~\eqref{eqn:vy}, we compute
+	\baas{
+	\left . \pd{v_y^*}{\psi}\right\vert_{r=d/2} &=& - 2 (\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)}\left( \frac{d^2}{4(d/2)^2} -1 \right)\cos2\psi \\
+	&=& 0 \\
+	\left . \pd{v_x^*}{\psi}\right\vert_{r=d/2} &=& (\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)}\left(\frac{d^2}{2(d/2)^2} -2 \right)\sin2\psi \\
+	&=& 0.
+	}
+	Our integrals may then be rewritten as
+	\baas{
+	I_x &=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} \pd{v_x^*}{r} (\cos^2\psi+1) + \pd{v_y^*}{r}\frac{\sin 2\psi}{2}  \, d\psi \\
+	I_y &=& \frac{\mu d e^{i \om t}}{2}\int_0^{2\pi} \pd{v_y^*}{r}(\sin^2\psi+1) + \pd{v_x^*}{r} \frac{\sin 2\psi}{2} \, d\psi.
+	}
+	
+	We now calculate the remaining partials, making use of the Bessel identities in Appendix~\ref{app:bessel}:
+	\baa{
+	\pd{v_y^*}{r} &=& - (\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)}\left( \frac{-2d^2}{4r^3} -\frac{\lambda K_2'(\lambda r)}{K_2(d\lambda/2)} \right)\sin2\psi \nonumber \\
+	\Rightarrow \left . \pd{v_y^*}{r}\right\vert_{r=d/2} &=& (\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)}\frac{2}{d/2}\sin2\psi + (\vinf-v_h^*)\frac{\lambda \left(\frac{-2}{d\lambda/2} K_2(d\lambda/2) - K_1(d\lambda/2)\right)}{K_0(d\lambda/2)}\sin2\psi \nonumber \\
+	&=& -\lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2)}{K_0(d\lambda/2)}\sin2\psi \label{eqn:vyr} \\
+	\pd{v_x^*}{r} &=& -\frac{(\vinf-v_h^*)}{K_0(d\lambda/2)}\left[ \frac{d^2}{2r^3}K_2(d\lambda/2) + \lambda K_2'(\lambda r) + \lambda K_0'(\lambda r) + \cos^2\psi\left( -\frac{d^2}{r^3}K_2(d\lambda/2) - 2\lambda K_2'(\lambda r) \right)  \right ] \nonumber \\
+	&=& -\frac{(\vinf-v_h^*)}{K_0(d\lambda/2)}\left[ \frac{d^2}{2r^3}K_2(d\lambda/2) - \frac{2}{r} K_2(\lambda r) - 2\lambda K_1(\lambda r) \right. \nonumber \\
+	&& \qquad \qquad \qquad \left. + \cos^2\psi\left( -\frac{d^2}{r^3}K_2(d\lambda/2) + \frac{4}{r} K_2(\lambda r) +2\lambda K_1(\lambda r)\right)  \right ] \nonumber \\
+	\Rightarrow \left . \pd{v_x^*}{r}\right\vert_{r=d/2} &=& -\frac{(\vinf-v_h^*)}{K_0(d\lambda/2)}\left[ -2\lambda K_1(d\lambda/2) +2\lambda K_1(d\lambda/2) \cos^2\psi\right] \nonumber \\
+	&=& 2\lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2 )}{K_0(d\lambda/2)}\sin^2\psi  \label{eqn:vxr} 
+	}
+	
+	If we consider the integrand of $I_y$, we see that 
+	\baas{
+	\pd{v_y^*}{r}(\sin^2\psi+1) + \pd{v_x^*}{r} \frac{\sin 2\psi}{2} &=& \lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2)}{K_0(d\lambda/2)}\left(-\sin2\psi(\sin^2\psi+1) + 2\sin^2\psi \frac{\sin 2\psi}{2}\right) \\
+	&=& -\lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2)}{K_0(d\lambda/2)}\sin2\psi.
+	}
+	It is easy to see that this integrates to zero on the circle, $\psi \in [0,2\pi]$. \textbf{Since the $y$ component of the pressure drag was also zero, we see that the drag force occurs only in the $x$ direction.} 
+	
+	Now for the $I_x$ integrand:
+	\baas{
+	\pd{v_x^*}{r} (\cos^2\psi+1) + \pd{v_y^*}{r}\frac{\sin 2\psi}{2} &=& \lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2)}{K_0(d\lambda/2)}\left( 2\sin^2\psi(\cos^2\psi+1) - \frac{(\sin 2\psi)^2}{2}\right)\\
+	&=& 2\lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2)}{K_0(d\lambda/2)}\sin^2\psi,
+	}	
+	which is simply $\partial v_x^*/\partial r$. This integrates to $2\pi\lambda (\vinf-v_h^*)K_1(d\lambda/2 )/K_0(d\lambda/2)$. Summing the pressure drag with $I_x$ and multiplying by the complex exponential, we find the total drag force in the $x$ direction to be
+	\baas{
+	\text{total drag } &=& \frac{i \om \rho \pi d^2}{4}\left((\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right) e^{i \om t} + \frac{\mu d e^{i \om t}}{2}2\pi\lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2 )}{K_0(d\lambda/2)} \\
+	&=& \frac{\mu\lambda^2\pi d^2}{4} e^{i \om t} \left[ \vinf + \frac{\vinf-v_h^*}{K_0(d\lambda/2)}\left(K_2(d\lambda/2) + \frac{4 K_1(d\lambda/2)}{\lambda d}\right) \right].
+	}
+	\textbf{This result matches the work that Bathellier does in his personal notes for the special case of $v_h^*$ = 0.} The expression can be simplified by using the identity 
+	\bee{
+	K_1(d\lambda/2) = \frac{d\lambda}{4}(K_2(d\lambda/2)-K_0(d\lambda/2)) \label{bessid}
+	}
+	(see Appendix~\ref{app:bessel}), to get 
+	\baas{
+	\text{total drag } &=& \frac{\mu\lambda^2\pi d^2}{4} e^{i \om t} \left[ \vinf + (\vinf-v_h^*)\left(\frac{2K_2(d\lambda/2)}{K_0(d\lambda/2)} -1\right) \right].
+	}
+	
+	The pointwise traction over the boundary is given by the integrands for the total drag force:
+	\baas{
+	\sigma\cdot\bn &=& \begin{pmatrix} -p\cos\psi + \mu e^{i \om t} \left(\pd{v_x^*}{r} (\cos^2\psi+1) + \pd{v_y^*}{r}\frac{\sin 2\psi}{2}\right) \\ -p\sin\psi + \mu e^{i \om t} \left(\pd{v_y^*}{r}(\sin^2\psi+1) + \pd{v_x^*}{r} \frac{\sin 2\psi}{2} \right)\end{pmatrix}.
+	}
+	Using again the identity \eqref{bessid}, the $x$ and $y$ entries of the traction are given by
+	\baas{
+	(\sigma\cdot\bn)_x &=& -p\cos\psi + \mu e^{i \om t} \left(\pd{v_x^*}{r} (\cos^2\psi+1) + \pd{v_y^*}{r}\frac{\sin 2\psi}{2}\right)\Bigg|_{r=d/2} \\
+	&=& \mu e^{i\om t} \left( \frac{\lambda^2 d}{2}\left((\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right)\cos^2\psi + 2\lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2)}{K_0(d\lambda/2)}\sin^2\psi\right)\\
+	&=& \frac{\mu \lambda^2 d}{2}e^{i\om t} \left(  \vinf\cos^2\psi + (\vinf-v_h^*)\left[ \frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} - \sin^2\psi \right]\right)\\
+	(\sigma\cdot\bn)_y &=&-p\sin\psi + \mu e^{i \om t} \left(\pd{v_y^*}{r}(\sin^2\psi+1) + \pd{v_x^*}{r} \frac{\sin 2\psi}{2} \right)\Bigg|_{r=d/2} \\
+	&=& \mu e^{i\om t}\sin2\psi \left( \frac{\lambda^2 d}{4}\left((\vinf-v_h^*)\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf \right) -\lambda (\vinf-v_h^*)\frac{K_1(d\lambda/2)}{K_0(d\lambda/2)}\right) \\
+	&=& \frac{\mu \lambda^2 d}{4}e^{i\om t}\sin2\psi \left( \vinf + (\vinf-v_h^*) \right).
+	}
+	Notice that since $\mu \lambda^2 = i\omega\rho$, the drag depends on fluid viscosity only through the Bessel functions.
+	
+	
+	\section{Extension to two hairs}
+	
+	\section{Calculation of torque on a hair}
+	
+	\section{Calculation of hair motion}
+	
+	\appendix
+	\section{Cartesian to polar coordinates}
+
+	Useful identities:
+	\begin{align*}
+		\pd{r}{x} = \cos\psi\\ 
+		\pd{r}{y} = \sin\psi\\ 
+		\pd{\psi}{x} = \dfrac{-\sin\psi}{r}\\ 
+		\pd{\psi}{y} = \dfrac{\cos\psi}{r} 
+	\end{align*}
+
+	Work:
+	\begin{align*}
+		\pd{r}{x} = \pd{}{x}\sqrt{x^2 + y^2} = \dfrac{x}{r} = \dfrac{r\cos\psi}{r} = 
+		\pd{r}{y} = \pd{}{y}\sqrt{x^2 + y^2} = \dfrac{y}{r} = \dfrac{r\sin\psi}{r} = \sin\psi \\ 
+		\tan\psi = \dfrac{y}{x} \Rightarrow \sec^2\psi\pd{\psi}{x} = \dfrac{-y}{x^2} = \dfrac{-\sin\psi}{r\cos^2\psi} \Rightarrow \pd{\psi}{x} = \dfrac{-\sin\psi}{r}\\ 
+		\tan\psi = \dfrac{y}{x} \Rightarrow \sec^2\psi\pd{\psi}{y} = \dfrac{1}{x} = \dfrac{1}{r\cos\psi} \Rightarrow \pd{\psi}{y} = \dfrac{\cos\psi}{r} 
+	\end{align*}
+	
+	\section{Bessel function identities}\label{app:bessel}
+	
+	These are all from Jeffrey and Zwilliger, pg 919.
+	
+	\begin{align*}
+		-2K_n'(\lambda r)  = K_{n-1}(\lambda r) + K_{n+1}(\lambda r) \\
+		\lambda r K_n'(\lambda r) + nK_n(\lambda r) = -\lambda r K_{n-1}(\lambda r) \\
+		\lambda r K_n'(\lambda r) - nK_n(\lambda r) = -\lambda r K_{n+1}(\lambda r) \\
+		K_2(\lambda r) = \frac{2}{\lambda r}K_1(\lambda r)+ K_0(\lambda r)\\
+		K_0'(\lambda r) = -K_1(\lambda r)
+	\end{align*}
+
+	\section{Dead end approach: Why I can't solve directly for $\bD$}
+
+	I have the following question: Why can't I substitute Eqs.~\eqref{eqn:interp} into Eq.~\eqref{eqn:uss} and solve directly for $\bD$ instead of $\chi$? Here is the substitution:
+	\bees{
+	\left(\Delta-\frac{1}{\nu} \pd{}{t}\right) \left( \vinf e^{i\om t}\ex - \bD(r,\psi)(\vinf - v_h^*) e^{i\om t} \right) = \frac{1}{\mu}\nabla p\, e^{i\om t}.
+	}
+	Taking the time derivative and dividing by the exponential gives us:
+	\bees{
+	\left(\Delta-\frac{i\om}{\nu} \right) \left( \vinf \ex - \bD(r,\psi)(\vinf - v_h^*)  \right) = \frac{1}{\mu}\nabla p.
+	}
+	Taking the Laplacian gets rid of the far field velocity and the pressure:
+	\bees{
+	 \Delta\left(\Delta-\frac{i\om}{\nu} \right)\bD(r,\psi)(\vinf - v_h^*)  = 0.
+	}
+	At this point, we may divide by the constant $\vinf - v_h^*$:
+	\bees{
+	 \Delta\left(\Delta-\frac{i\om}{\nu} \right)\bD(r,\psi) = 0.
+	}
+	This is the same equation as Eq.~\eqref{eqn:chi}, except that the factor of $e^{i\om t}$ is not required and the boundary conditions are $\bD = [1,0]$ on the cylinder and $\bD \to [0,0]$ as $r \to \infty$. So, from Eq.~\eqref{eqn:chisoln}, $\bD$ should be
+	\baas{
+	\bD &=& \left[ -\frac{d^2[-1,0]}{4r}\frac{K_2(d\lambda/2)}{K_0(d\lambda/2)} + \vinf r + \frac{2[-1,0]}{\lambda K_0(d\lambda/2)}K_1(\lambda r)\right]\sin\psi \\
+	\Rightarrow D_x^* &=& \left(\frac{d^2K_2(d\lambda/2)}{4rK_0(d\lambda/2)} + \vinf r - \frac{2K_1(\lambda r)}{\lambda K_0(d\lambda/2)}\right)\sin\psi \\
+	\Rightarrow D_y^* &=& \vinf r\sin\psi.
+	}
+	In other words, by this method, $\bD$ is a function of $\chi$ instead of being a function of $\nabla \chi$. There must be an error in my derivation, but I do not know what it is. $\bD$ is a shifted and scaled version of the velocity $\bv$, so if an exact differential was required before, it should be required again. It is easy to show that $\nabla \cdot \bD = 0$, so a $\chi_D$ exists. 
+
+	Let's see, if my technique were right, then I should be able to do the same thing with velocity $\bv$; i.e. it should be true that 
+	\bee{
+	\Delta\left(\Delta-\frac{1}{\nu}\pd{}{t} \right)\bv = 0. \label{eqn:question}
+	}
+	So this has to be false. I'll see if I can figure out why....
+
+	I talked to Ricardo. The issue is that I have only 4 scalar boundary conditions (2 vector boundary conditions). So I have enough information to find a 4th order scalar equation (as for $\chi$) or a second order vector equation (the original unsteady Stokes equations). Eq.~\eqref{eqn:question} is a true equation, but it cannot be used to actually solve for $\bv$ or $\bD$. Had I actually written the whole thing out, I would have seen that I require additional functions $f_3(r)$ and $f_4(r)$ to solve for the $y$-component, leading to unresolved coefficients in the solution.
+
+
+
+
+
+
+
+\end{document}

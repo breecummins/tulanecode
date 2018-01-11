@@ -1,0 +1,38 @@
+Steps for running this code:
+
+0) The following commands are all in the shell script SCVT.sh.
+
+1) Edit the density function if you know what you are doing.
+
+2) gfortran -c density.f -o dens_f
+
+The "-c" option creates an object instead of an executable. The -o option allows you to specify a name.  I believe the name for density.f must be dens_f for the programs that access it later.
+
+3) Edit the scvt.in file if you know what you are doing.
+
+4) gfortran scvt_ini.f randgen.f dens_f -o scvtini
+
+This compiles two programs and an object together.
+
+5) ./scvtini
+
+This runs the resulting program.  The "./" informs bash that the command is in the current directory.
+
+6) cp scvt_mc.dat scvt_s.dat
+
+This changes the file name so that it can be read by the next program.
+
+7) gfortran scvt_opt.f process.f svtgen.f dens_f -o scvtopt
+   ./scvtopt
+
+8) cp scvt_lloyd.dat nodes.dat
+
+9) gfortran draw_diag.f svtgen.f -o draw
+   ./draw
+
+Do this if you want to make pictures.  
+
+10) There is one more program that can be run, but it looks like it's what you do if you want some kind of mesh refinement. I'm not doing it right now. Ricardo says that either the triangles.dat or voronoi.dat files can be used for discretizing the sphere -- they each contain a mesh and the Voronoi mesh has more points. The Voronoi vertices lie within the triangles, and the triangle vertices lie within the Voronoi polygons. It is easier to calculate the area of a triangle (to find out how much area a point actually represents), so Ricardo uses voronoi.dat.
+
+11) Now, to actually use the discretization, extract the actual vortex coordinates from the appropriate .dat file. For example, scroll down through voronoi.dat until you see "Number of vertices". Below that is a list of 3D coordinates. Excise the 3D coordinates (avoiding their index in the first column). Copy to a new file, and read it into whatever program needs it. 
+

@@ -1,0 +1,541 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     18053,        532]
+NotebookOptionsPosition[     16836,        493]
+NotebookOutlinePosition[     17234,        510]
+CellTagsIndexPosition[     17191,        507]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "\[Phi]", ",", "\[Psi]", ",", "\[Epsilon]", ",", "r", ",", "a", ",", 
+   "G\[Psi]", ",", "Gp\[Psi]", ",", " ", "Gpp\[Psi]", ",", "G\[Phi]", ",", 
+   "Gp\[Phi]", ",", "Bp\[Phi]", ",", " ", "Bpp\[Phi]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"$Assumptions", " ", "=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\[Epsilon]", ">", "0"}], ",", 
+    RowBox[{"a", ">", "0"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Text", "[", "\"\<Find the dipole constant for 2D cylinder\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"\[Phi]", " ", "=", " ", 
+  RowBox[{"2", "*", 
+   RowBox[{
+    RowBox[{"\[Epsilon]", "^", "4"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"Pi", "*", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"r", "^", "2"}], "+", 
+         RowBox[{"\[Epsilon]", "^", "2"}]}], ")"}], "^", "3"}]}], 
+     ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"\[Psi]", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"\[Epsilon]", "^", "2"}], "/", 
+   RowBox[{"(", 
+    RowBox[{"Pi", "*", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"r", "^", "2"}], "+", 
+        RowBox[{"\[Epsilon]", "^", "2"}]}], ")"}], "^", "2"}]}], 
+    ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"Text", "[", " ", "\"\<G, B', B'' for the Stokeslet\>\"", " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Gp\[Phi]", " ", ":=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "/", "r"}], ")"}], "*", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{"r", "*", "\[Phi]"}], ",", "r"}], "]"}], "+", "C1"}], ")"}]}],
+    "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"G\[Phi]1", " ", ":=", " ", 
+  RowBox[{"Collect", "[", 
+   RowBox[{
+    RowBox[{"FullSimplify", "[", 
+     RowBox[{
+      RowBox[{"Integrate", "[", 
+       RowBox[{"Gp\[Phi]", ",", "r"}], "]"}], "+", "C2"}], "]"}], ",", 
+    RowBox[{"Log", "[", "r", "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"sol", "=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"4", " ", "C1"}], "-", 
+      FractionBox["2", "\[Pi]"]}], "\[Equal]", "0"}], ",", "C1"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"G\[Phi]2", " ", ":=", " ", 
+  RowBox[{"G\[Phi]1", " ", "/.", 
+   RowBox[{"sol", "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"G\[Phi]", " ", "=", " ", 
+  RowBox[{"G\[Phi]2", " ", "/.", 
+   RowBox[{"C2", "\[Rule]", "0"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"Bp\[Phi]", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "/", "r"}], ")"}], "*", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"r", "*", "G\[Phi]"}], ",", "r"}], "]"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Bpp\[Phi]", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"D", "[", 
+    RowBox[{"Bp\[Phi]", ",", "r"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Text", "[", " ", "\"\<G' and G'' for the dipole\>\"", " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Gp\[Psi]", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "/", "r"}], ")"}], "*", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{"r", "*", "\[Psi]"}], ",", "r"}], "]"}], "+", "C3"}], ")"}]}],
+    "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Gpp\[Psi]", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"D", "[", 
+    RowBox[{"Gp\[Psi]", ",", "r"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Text", "[", "\"\<H1 and H2\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"H1", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"Bp\[Phi]", "/", "r"}], " ", "-", " ", "G\[Phi]", " ", "+", " ", 
+    RowBox[{"1", "/", 
+     RowBox[{"(", 
+      RowBox[{"8", "*", "Pi"}], ")"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"H2", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"Bpp\[Phi]", "/", 
+     RowBox[{"r", "^", "2"}]}], " ", "-", " ", 
+    RowBox[{"Bp\[Phi]", "/", 
+     RowBox[{"r", "^", "3"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Text", "[", "\"\<Q1 and Q2\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Q1t", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"Gp\[Psi]", "/", "r"}], " ", "-", " ", "\[Psi]"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Q2t", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"Gpp\[Psi]", "/", 
+     RowBox[{"r", "^", "2"}]}], " ", "-", " ", 
+    RowBox[{"Gp\[Psi]", "/", 
+     RowBox[{"r", "^", "3"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Q1", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"Q1t", "/.", 
+    RowBox[{"C3", " ", "\[Rule]", " ", 
+     RowBox[{"1", "/", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", "Pi"}], ")"}]}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Q2", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"Q2t", "/.", 
+    RowBox[{"C3", " ", "\[Rule]", " ", 
+     RowBox[{"1", "/", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", "Pi"}], ")"}]}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Text", "[", "\"\<Form the ratio that is the dipole constant\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ratio", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "H2"}], " ", "/.", " ", 
+      RowBox[{"r", "\[Rule]", " ", "a"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"Q2", "/.", 
+      RowBox[{"r", "\[Rule]", "a"}]}], ")"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.545752029503085*^9, 3.545752115056013*^9}, {
+   3.545752176913595*^9, 3.545752541865015*^9}, 3.545752591745741*^9, {
+   3.545752640595084*^9, 3.545752658730195*^9}, {3.5457528185527487`*^9, 
+   3.545752861675378*^9}, {3.545753131223474*^9, 3.5457532201499653`*^9}, {
+   3.545753288319426*^9, 3.545753305366907*^9}, {3.545753766047028*^9, 
+   3.5457537969016857`*^9}, {3.54575382742572*^9, 3.545753866509838*^9}, {
+   3.545753929668159*^9, 3.545754067882579*^9}, {3.545754132714074*^9, 
+   3.5457542465427732`*^9}, {3.545754310047752*^9, 3.5457543179195623`*^9}, {
+   3.545754435463697*^9, 3.545754441235922*^9}, {3.545754531152656*^9, 
+   3.545754541062505*^9}, {3.545754808408895*^9, 3.54575486077454*^9}, {
+   3.5457548919180717`*^9, 3.54575490162269*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\[Epsilon]", ">", "0"}], ",", 
+   RowBox[{"a", ">", "0"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906604795*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  BoxData["\<\"Find the dipole constant for 2D cylinder\"\>"], "Text", "TR"],
+  Text["Find the dipole constant for 2D cylinder"]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.5457549066073427`*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"2", " ", 
+   SuperscriptBox["\[Epsilon]", "4"]}], 
+  RowBox[{"\[Pi]", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["r", "2"], "+", 
+      SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "3"]}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.5457549066096687`*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  SuperscriptBox["\[Epsilon]", "2"], 
+  RowBox[{"\[Pi]", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["r", "2"], "+", 
+      SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "2"]}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906611145*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  BoxData["\<\"G, B', B'' for the Stokeslet\"\>"], "Text", "TR"],
+  Text["G, B', B'' for the Stokeslet"]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906612599*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"C1", "\[Rule]", 
+    FractionBox["1", 
+     RowBox[{"2", " ", "\[Pi]"}]]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906614979*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox[
+     SuperscriptBox["\[Epsilon]", "2"], 
+     RowBox[{
+      SuperscriptBox["r", "2"], "+", 
+      SuperscriptBox["\[Epsilon]", "2"]}]]}], "+", 
+   RowBox[{"Log", "[", 
+    RowBox[{
+     SuperscriptBox["r", "2"], "+", 
+     SuperscriptBox["\[Epsilon]", "2"]}], "]"}]}], 
+  RowBox[{"4", " ", "\[Pi]"}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906616559*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"r", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     RowBox[{"Log", "[", 
+      RowBox[{
+       SuperscriptBox["r", "2"], "+", 
+       SuperscriptBox["\[Epsilon]", "2"]}], "]"}]}], ")"}]}], 
+  RowBox[{"8", " ", "\[Pi]"}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906618548*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", "1"}], "+", 
+   FractionBox[
+    RowBox[{"2", " ", 
+     SuperscriptBox["r", "2"]}], 
+    RowBox[{
+     SuperscriptBox["r", "2"], "+", 
+     SuperscriptBox["\[Epsilon]", "2"]}]], "+", 
+   RowBox[{"Log", "[", 
+    RowBox[{
+     SuperscriptBox["r", "2"], "+", 
+     SuperscriptBox["\[Epsilon]", "2"]}], "]"}]}], 
+  RowBox[{"8", " ", "\[Pi]"}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906620473*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  BoxData["\<\"G' and G'' for the dipole\"\>"], "Text", "TR"],
+  Text["G' and G'' for the dipole"]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906622096*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"C3", "-", 
+   FractionBox[
+    SuperscriptBox["\[Epsilon]", "2"], 
+    RowBox[{"2", " ", "\[Pi]", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["r", "2"], "+", 
+       SuperscriptBox["\[Epsilon]", "2"]}], ")"}]}]]}], "r"]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906624462*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"3", " ", 
+    SuperscriptBox["r", "2"], " ", 
+    SuperscriptBox["\[Epsilon]", "2"]}], "+", 
+   SuperscriptBox["\[Epsilon]", "4"], "-", 
+   RowBox[{"2", " ", "C3", " ", "\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["r", "2"], "+", 
+       SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "2"]}]}], 
+  RowBox[{"2", " ", "\[Pi]", " ", 
+   SuperscriptBox["r", "2"], " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["r", "2"], "+", 
+      SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "2"]}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906626012*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell[BoxData["\<\"H1 and H2\"\>"], "Text", "TR"],
+  Text["H1 and H2"]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906627548*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{"2", " ", 
+       SuperscriptBox["\[Epsilon]", "2"]}], 
+      RowBox[{
+       SuperscriptBox["r", "2"], "+", 
+       SuperscriptBox["\[Epsilon]", "2"]}]]}], "+", 
+    RowBox[{"Log", "[", 
+     RowBox[{
+      SuperscriptBox["r", "2"], "+", 
+      SuperscriptBox["\[Epsilon]", "2"]}], "]"}]}], 
+   RowBox[{"8", " ", "\[Pi]"}]]}]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.5457549066298532`*^9}],
+
+Cell[BoxData[
+ FractionBox["1", 
+  RowBox[{
+   RowBox[{"4", " ", "\[Pi]", " ", 
+    SuperscriptBox["r", "2"]}], "+", 
+   RowBox[{"4", " ", "\[Pi]", " ", 
+    SuperscriptBox["\[Epsilon]", "2"]}]}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906631341*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell[BoxData["\<\"Q1 and Q2\"\>"], "Text", "TR"],
+  Text["Q1 and Q2"]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906632757*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"2", " ", "C3"}], "-", 
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["\[Epsilon]", "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"3", " ", 
+        SuperscriptBox["r", "2"]}], "+", 
+       SuperscriptBox["\[Epsilon]", "2"]}], ")"}]}], 
+    RowBox[{"\[Pi]", " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["r", "2"], "+", 
+        SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "2"]}]]}], 
+  RowBox[{"2", " ", 
+   SuperscriptBox["r", "2"]}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906635071*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{"2", " ", "C3"}], 
+    SuperscriptBox["r", "4"]]}], "+", 
+  FractionBox[
+   RowBox[{
+    FractionBox["1", 
+     SuperscriptBox["r", "4"]], "-", 
+    FractionBox["1", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["r", "2"], "+", 
+        SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "2"]]}], 
+   "\[Pi]"]}]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.54575490663664*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"r", "-", "\[Epsilon]"}], ")"}], " ", 
+   RowBox[{"(", 
+    RowBox[{"r", "+", "\[Epsilon]"}], ")"}]}], 
+  RowBox[{"2", " ", "\[Pi]", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["r", "2"], "+", 
+      SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "2"]}]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906638213*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox["1", 
+   RowBox[{"\[Pi]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["r", "2"], "+", 
+       SuperscriptBox["\[Epsilon]", "2"]}], ")"}], "2"]}]]}]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906639655*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  BoxData["\<\"Form the ratio that is the dipole constant\"\>"], "Text", "TR"],
+  Text["Form the ratio that is the dipole constant"]]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.545754906641054*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "4"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    SuperscriptBox["a", "2"], "+", 
+    SuperscriptBox["\[Epsilon]", "2"]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.5457543008671227`*^9, 3.5457543218827343`*^9}, 
+   3.545754442882966*^9, 3.545754546436345*^9, 3.545754863143914*^9, 
+   3.54575490664338*^9}]
+}, Open  ]]
+},
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{865, 1006},
+WindowMargins->{{-12, Automatic}, {Automatic, 0}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 23, \
+2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 6404, 169, 1017, "Input"],
+Cell[6986, 193, 296, 7, 47, "Output"],
+Cell[7285, 202, 348, 6, 47, "Output"],
+Cell[7636, 210, 441, 12, 90, "Output"],
+Cell[8080, 224, 415, 11, 90, "Output"],
+Cell[8498, 237, 322, 6, 47, "Output"],
+Cell[8823, 245, 323, 8, 72, "Output"],
+Cell[9149, 255, 552, 16, 91, "Output"],
+Cell[9704, 273, 461, 13, 83, "Output"],
+Cell[10168, 288, 574, 17, 91, "Output"],
+Cell[10745, 307, 316, 6, 47, "Output"],
+Cell[11064, 315, 454, 12, 96, "Output"],
+Cell[11521, 329, 784, 22, 98, "Output"],
+Cell[12308, 353, 281, 5, 47, "Output"],
+Cell[12592, 360, 612, 18, 91, "Output"],
+Cell[13207, 380, 374, 9, 73, "Output"],
+Cell[13584, 391, 281, 5, 47, "Output"],
+Cell[13868, 398, 722, 22, 105, "Output"],
+Cell[14593, 422, 584, 19, 93, "Output"],
+Cell[15180, 443, 531, 15, 85, "Output"],
+Cell[15714, 460, 406, 11, 85, "Output"],
+Cell[16123, 473, 350, 6, 47, "Output"],
+Cell[16476, 481, 344, 9, 71, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

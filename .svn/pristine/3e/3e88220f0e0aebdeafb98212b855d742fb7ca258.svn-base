@@ -1,0 +1,15 @@
+\relax 
+\@writefile{toc}{\contentsline {section}{\numberline {1}Parameters:}{1}}
+\newlabel{bubble}{{1}{1}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Numerical Model Parameters}}{1}}
+\newlabel{parameters}{{1}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Immersed boundary forces:}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Plot of immersed boundary: }{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Plot of immersed boundary at $t = 0$ and $t = 1.0$. }}{2}}
+\newlabel{Fig:FirstAndLast}{{1}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Plot of FFT Modes: }{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Plot of the FFT of mode 3. }}{2}}
+\newlabel{Fig:FFTModep}{{2}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Plot of the FFT of mode 6. }}{3}}
+\newlabel{Fig:FFT2Modep}{{3}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Report Location:}{3}}

@@ -1,0 +1,318 @@
+\documentclass[11pt]{amsart}
+\usepackage[top=0.5in,left=0.5in,right=0.5in,bottom=0.75in]{geometry}                
+\usepackage{amssymb,amsmath,graphicx}
+
+\newcommand{\vinf}{v_{\infty}}
+\newcommand{\om}{\omega}
+\newcommand{\ex}{\mathbf{e}_x}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bw}{\mathbf{w}}
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bq}{\mathbf{q}}
+\newcommand{\ff}{\mathbf{f}}
+\newcommand{\bn}{\mathbf{n}}
+
+\newcommand{\bee}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\baa}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\bees}[1]{\begin{equation*} #1 \end{equation*}}
+\newcommand{\baas}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+
+
+\newcommand{\dd}[2]{\ensuremath{\dfrac{\text{d} #1}{\text{d} #2}}}
+\newcommand{\ddd}[2]{\ensuremath{\dfrac{\text{d}^2 #1}{\text{d} {#2}^2}}}
+\newcommand{\pd}[2]{\ensuremath{\dfrac{\partial #1}{\partial #2}}}
+\newcommand{\pdd}[2]{\ensuremath{\dfrac{\partial^2 #1}{\partial {#2}^2}}}
+\newcommand{\pddd}[3]{\ensuremath{\dfrac{\partial^2 #1}{\partial #2 \partial #3}}}
+
+\begin{document}
+
+I am seeking a singularity solution to the oscillatory Stokes equations in two dimensions with constant boundary conditions at infinity and at a circle of radius $a$. I will start by deriving the solution for a vanishing boundary condition at infinity, then alter the result for a nonzero boundary condition. I proceed by deriving the oscillatory Stokeslet, which is the solution to the oscillatory Stokes equations with a point force. I then differentiate the oscillatory Stokeslet twice to obtain a dipole (or symmetric quadrupole), which is another solution to the oscillatory Stokes equations. By superposing these two solutions at the center of the circle and choosing their strengths appropriately, the boundary conditions on the circle can be satisfied.
+
+\section{Vanishing boundary condition at $\infty$}
+The equations of motion are these
+\baa{
+\rho\dfrac{\partial\bu(\bx,t)}{\partial t} - \mu\Delta\bu(\bx,t) &=& -\nabla p(\bx,t) \label{eqn:uss} \\
+\nabla \cdot \bu(\bx,t) &=& 0 \label{eqn:div} \\
+\bu(\bx,t) &=& v_c^* e^{i\om t}\ex \text{ when } r = a \label{eqn:ussBC1} \\
+\bu(\bx,t) &\to& \mathbf{0} \text{ as } r \to \infty \label{eqn:ussBC2}.
+}
+To begin, assume $\omega$-periodic solutions so that we may write 
+\baas{
+\mu\left(\Delta - \lambda^2 \right)\bu(\bx) &=& \nabla p(\bx) \\
+\nabla \cdot \bu(\bx) &=& 0 \\
+\bu(\bx) &=& v_c^* \ex \text{ when } r = a \\
+\bu(\bx) &\to& \mathbf{0} \text{ as } r \to \infty,
+}
+where $\lambda^2 = i \om \rho/\mu$. We will seek the fundamental solution to the free space equation, derive the potential dipole from it, and then express the specific solution needed for our boundary conditions. 
+
+\vspace{4mm}
+\section{Point force solution}
+To get the fundamental solution, we assume a point force of strength $\ff$ located at $\bx_0$:
+\baas{
+\mu\left(\Delta - \lambda^2 \right)\bv(\bx) &=& \nabla p(\bx) - \ff\delta(|\bx-\bx_0|),
+}
+where $\delta(|\bx-\bx_0|)$ is the two dimensional Dirac $\delta$. We take the divergence and use the continuity equation:
+\baas{
+\Delta p(\bx) &=& \ff\cdot \nabla\delta(|\bx-\bx_0|) \\
+\Rightarrow p(\bx) &=& \ff\cdot \nabla G(|\bx-\bx_0|),
+}
+where the free space Green's function $G$ satisfies $\Delta G = \delta(|\bx-\bx_0|)$. At this point, let us introduce a polar coordinate system centered at $\bx_0$ to take advantage of the radial symmetry of $G$:
+\baas{
+\dfrac{1}{r}\left( r G'(r)\right)' &=& \delta(r),
+}
+where $ r = | \bx - \bx_0 | =: |\hat{\bx}|$. The solution to this equation is $G(r) = \ln(r)/2\pi$ except where $r=0$. This means that the pressure is given by
+\bee{
+p(\bx) = \frac{\ff\cdot \hat{\bx}}{2\pi r^2},\label{pressure}
+}
+although for now it is convenient to leave pressure in terms of the Green's function.
+
+Now the equation may be written
+\baa{
+\mu\left(\Delta - \lambda^2 \right)\bv(\bx) &=& (\ff \cdot \nabla)\nabla G(r) - \ff\Delta G(r) \nonumber \\
+\Rightarrow \mu\bv(\bx) &=& (\ff \cdot \nabla)\nabla B(r) - \ff\Delta B(r), \label{uinB}
+}
+where $B(r)$ satisfies $\left(\Delta - \lambda^2 \right)B(r) = G(r)$. We will solve this equation in a moment. First let's rewrite Eq.~\ref{uinB}. We will use $\partial r/\partial x = \hat{x}/r$, $\partial r/\partial y = \hat{y}/r$, $(\partial/\partial x) (1/r)= -\hat{x}/r^3$, and $(\partial/\partial y) (1/r)= -\hat{y}/r^3$, where $\bx - \bx_0 = \hat{\bx}$.
+\baas{
+\left(\ff \cdot \nabla\right)\nabla B(r) &=&  \begin{pmatrix} f_1\pdd{B}{x} + f_2\pddd{B}{y}{x} \\ f_1\pddd{B}{x}{y} + f_2\pdd{B}{y} \end{pmatrix} \\
+&=& \begin{pmatrix} f_1\left(B''(r)\dfrac{\hat{x}^2}{r^2} + B'(r)\left(\dfrac{1}{r}-\dfrac{\hat{x}^2}{r^3}\right)\right) + f_2\left(B''(r)\dfrac{\hat{x}\hat{y}}{r^2} - B'(r)\dfrac{\hat{x}\hat{y}}{r^3}\right) \\
+f_1\left(B''(r)\dfrac{\hat{x}\hat{y}}{r^2} - B'(r)\dfrac{\hat{x}\hat{y}}{r^3}\right) + f_2\left(B''(r)\dfrac{\hat{y}^2}{r^2} + B'(r)\left(\dfrac{1}{r}-\dfrac{\hat{y}^2}{r^3}\right)\right) \end{pmatrix} \\
+&=& \begin{pmatrix}f_1 \dfrac{B'(r)}{r} + \left(\ff \cdot \hat{\bx} \right)\hat{x}\left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right) \\ f_2 \dfrac{B'(r)}{r} + \left(\ff \cdot \hat{\bx} \right)\hat{y}\left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right) \end{pmatrix} \\
+&=& \dfrac{B'(r)}{r}\ff + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right) \\
+\Rightarrow \mu\bv(\bx) &=& \dfrac{B'(r)}{r}\ff + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right) -\ff\left(B''(r)+\dfrac{B'(r)}{r}\right) \\
+&=& \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right) -\ff B''(r).
+}
+
+Now let's solve $\left(\Delta - \lambda^2 \right)B(r) = G(r)$. In polar coordinates, we have
+\baas{
+B''(r)+\dfrac{B'(r)}{r} - \lambda^2 B(r) &=& \dfrac{1}{2\pi}\ln(r).
+}
+The particular solution to this equation is $B_p(r) = -\ln(r)/(2\pi\lambda^2)$, which I found by guessing. The homogeneous solution consists of the modified Bessel functions:
+\baas{
+B''(r)+\dfrac{B'(r)}{r} - \lambda^2 B(r) &=& 0 \\
+\Rightarrow r^2 B''(r) + rB'(r) - r^2 \lambda^2 B(r) &=& 0 \\
+\Rightarrow R^2 \pdd{B}{R} + R\pd{B}{R} - R^2B &=& 0.
+}
+The last line follows from a change of variables $R = \lambda r$, and is the modified Bessel equation of order 0. So the full solution is given by 
+\bees{
+B(r) = cK_0(\lambda r) + dI_0(\lambda r) -\dfrac{\ln(r)}{2\pi\lambda^2}.
+}
+Since $I_0$ increases exponentially as $r \to \infty$, we require $d = 0$. The constant $c$ will be determined by taking a limit of the fundamental solution later on.
+\bees{
+B(r) = cK_0(\lambda r) -\dfrac{\ln(r)}{2\pi\lambda^2}. \label{biharm}
+}
+Now for the derivatives of $B(r)$. I will make use of Bessel function identities in the following. 
+\baas{
+B'(r) &=& c\lambda K_0'(\lambda r) - \frac{1}{2\pi\lambda^2 r} \\ 
+&=& -c\lambda K_1(\lambda r) - \frac{1}{2\pi\lambda^2 r} \\
+B''(r) &=& -c\lambda^2 K_1'(\lambda r) + \frac{1}{2\pi\lambda^2 r^2} \\
+&=& c\lambda^2 \left( \frac{K_1(\lambda r)}{\lambda r} + K_0(\lambda r) \right)  + \frac{1}{2\pi\lambda^2 r^2}\\
+&=& \frac{c\lambda K_1(\lambda r)}{r} + c\lambda^2 K_0(\lambda r) + \frac{1}{2\pi\lambda^2 r^2}.
+}
+Then
+\baas{
+\mu\bv(\bx) &=&  -\ff B''(r) + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right) \\ 
+&=& \ff \left[ -\frac{c\lambda K_1(\lambda r)}{r} - c\lambda^2 K_0(\lambda r) - \frac{1}{2\pi\lambda^2 r^2} \right] \\
+&& + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left[\frac{c\lambda K_1(\lambda r)}{r^3} + \frac{c\lambda^2}{r^2} K_0(\lambda r) + \frac{1}{2\pi\lambda^2 r^4} +\frac{c\lambda}{r^3} K_1(\lambda r) + \frac{1}{2\pi\lambda^2 r^4}\right]  \\
+&=& \ff \left[ - \frac{c\lambda K_1(\lambda r)}{ r} - c\lambda^2 K_0(\lambda r)  - \frac{1}{2\pi\lambda^2 r^2} \right] + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left[\dfrac{c\lambda^2}{r^2}K_0(\lambda r) + \dfrac{2c\lambda}{r^3}K_1(\lambda r)+\frac{1}{\pi\lambda^2 r^4}\right] \\
+&=:& \ff H_1(r) + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} H_2(r)
+}
+Notice that this solution does not suffer from Stokes' paradox. 
+
+As $\lambda \to 0$, we should retrieve the steady limit: $ -\ff \ln(r)/(4\pi) + (\ff \cdot \hat{\bx}) \hat{\bx}/(4\pi r^2)$. Using Mathematica, we find the series expansions of $H_1$ and $H_2$ to be:
+\baas{
+H_1 &\to& \frac{-2c\pi\lambda^2 - 1}{2\pi r^2 \lambda^2} + \frac{c\lambda^2}{4}\left( 1+2\gamma + 2\ln(\lambda/2) \right) + \frac{c\lambda^2}{2}\ln(r) + \mathcal{O}(\lambda^4) \\
+H_2 &\to& \frac{1}{\pi\lambda^2r^4} + \frac{c(4-\lambda^2 r^2)}{2r^4} + \mathcal{O}(\lambda^4),
+}
+where $\gamma \approx 0.5772$ is Euler's constant. If we choose $ c = -1/(2\pi\lambda^2)$, then we have
+\baas{
+H_1 &\to& - \frac{\ln(r)}{4\pi} -\frac{ 1+2\gamma + 2\ln(\lambda/2) }{8\pi}  + \mathcal{O}(\lambda^4) \\
+H_2 &\to& \frac{1}{4\pi r^2} + \mathcal{O}(\lambda^4).
+}
+There is the issue that $H_1$ does not have the right limit. There is a constant and a $\ln(\lambda)$ which is unbounded as $\lambda \to 0$. However, this is the acknowledged solution, so perhaps there is something that I am not understanding. 
+
+With our choice of $c$, we have
+\baas{
+B(r) &=& -\frac{K_0(\lambda r) + \ln(r)}{2\pi\lambda^2} \\
+B'(r) &=& \frac{r\lambda K_1(\lambda r)-1}{2\pi\lambda^2 r} \\
+B''(r) &=& \frac{-r\lambda K_1(\lambda r)+1}{2\pi\lambda^2 r^2} -\frac{K_0(\lambda r)}{2\pi},
+}
+and the velocity field becomes
+\baas{
+\mu\bv(\bx) &=& \ff \left[ \frac{K_1(\lambda r) + \lambda r K_0(\lambda r)}{2\pi\lambda r} - \frac{1}{2\pi\lambda^2 r^2} \right] + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left[-\dfrac{2 K_1(\lambda r) + \lambda r K_0(\lambda r)}{2\pi\lambda r^3} +\frac{1}{\pi\lambda^2 r^4}\right].
+}
+
+\vspace{4mm}
+\section{Dipole or symmetric quadrupole}
+We now need a symmetric quadrupole to add to the point force in order to cancel the second term which depends on $\bx$. The symmetric quadrupole is the Laplacian of the above solution: $-\frac{1}{2}\Delta_{0}$, where $\Delta_0$ refers to the Laplacian with respect to the pole of the point force, $\bx_0$. We have that $\Delta_0 = (-1)^2\Delta$, so that the Laplacian with respect to the pole is simply the regular Laplacian with respect to $\bx$. 
+
+For ease of calculation, we will return to an earlier form of the solution:
+\baas{
+\mu\bv(\bx) &=&  -\ff B''(r) + \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right) \\
+\Rightarrow -\frac{\mu}{2}\Delta\bv(\bx) &=&  -\bq \Delta (B'') + \Delta\left[\left(\bq \cdot \hat{\bx} \right)\hat{\bx}\left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right)\right] \\
+&=&  -\bq \left(\frac{B^{(3)}(r)}{r} + B^{(4)}(r)\right) + \Delta\left[\left(\bq \cdot \hat{\bx} \right)\hat{\bx}\left(\dfrac{B''(r)}{r^2} - \dfrac{B'(r)}{r^3}\right)\right],
+}
+where $\bq$ is the strength of the quadrupole multiplied by $-1/2$.
+
+For ease of computation, we write $H_2(r) := B''/r^2 - B'/r^3$ (as above), and proceed to manipulate the second term assuming summation over repeated indices. In the work below, the index $i$ represents the $i$-th vector component, $\delta_{ij} = 1$ if $i=j$ and 0 otherwise (the Kronecker delta), and we will use that $\hat{x}_k\hat{x}_k/r^2 = 1$.
+\baas{
+\Delta\left[\left(\bq \cdot \hat{\bx} \right)\hat{\bx}\;H_2(r)\right]_i &=& \pd{}{x_k} \pd{}{x_k}\left[\left(q_j \hat{x}_j\right)\hat{x}_i H_2(r) \right] \\
+&=& \pd{}{x_k}\left[\left(\delta_{jk} q_j \hat{x}_i + \delta_{ik} q_j \hat{x}_j \right)H_2(r) + \left(q_j \hat{x}_j\right)\hat{x}_i H_2'(r)\frac{\hat{x}_k}{r} \right] \\
+&=& \left(\delta_{ik}\delta_{jk} q_j + \delta_{jk} \delta_{ik} q_j \right)H_2(r) + 2\left(\delta_{jk} q_j \hat{x}_i + \delta_{ik} q_j \hat{x}_j \right)H_2'(r)\frac{\hat{x}_k}{r} + \left(q_j \hat{x}_j\right)\hat{x}_i H_2''(r)\frac{\hat{x}_k\hat{x}_k}{r^2} \\
+&& + \left(q_j \hat{x}_j\right)\hat{x}_i H_2'(r)\frac{n-1}{r} \qquad \text{ (where the number of dimensions is } n = 2 \text{)}\\
+&=& 2 q_i H_2(r) + 2\left(\delta_{jk} q_j \hat{x}_i\hat{x}_k + \delta_{ik} q_j \hat{x}_j\hat{x}_k \right)\frac{H_2'(r)}{r} + \left(q_j \hat{x}_j\right)\hat{x}_i \frac{H_2'(r)}{r}+ \left(q_j \hat{x}_j\right)\hat{x}_i H_2''(r) \\
+&=& 2 q_i H_2(r) + 2\left( (q_j\hat{x}_j) \hat{x}_i + (q_j \hat{x}_j)\hat{x}_i \right)\frac{H_2'(r)}{r} + \left(q_j \hat{x}_j\right)\hat{x}_i \frac{H_2'(r)}{r} + \left(q_j \hat{x}_j\right)\hat{x}_i H_2''(r) \\
+&=& 2 q_i H_2(r) + \left(q_j \hat{x}_j\right)\hat{x}_i \left(H_2''(r) + 5 \frac{H_2'(r)}{r}\right).\\
+}
+Putting all of the terms together, we have that 
+\baas{
+-\frac{\mu}{2}\Delta\bv(\bx) &=& -\bq \left( \frac{B^{(3)}(r)}{r} + B^{(4)}(r) - 2 H_2(r)\right) + \left(\bq \cdot \hat{\bx} \right)\hat{\bx}\left(H_2''(r) + 5 \frac{H_2'(r)}{r}\right).
+}
+Thus we need derivatives of $H_2(r)$:
+\baas{
+H_2(r) &=& \frac{B''(r)}{r^2} - \frac{B'(r)}{r^3} \\
+&=& \frac{1}{r^2}\left(\Delta B(r) - 2\frac{B'(r)}{r}\right) \\
+&=& \frac{1}{r^2}\left(\frac{\ln(r)}{2\pi} + \lambda^2 B(r) - 2\frac{B'(r)}{r}\right) \\
+&=& \frac{\ln(r)}{2\pi r^2} + \frac{\lambda^2}{r^2} B(r) - 2\frac{B'(r)}{r^3} \\
+\Rightarrow H_2'(r) &=& \frac{1}{2\pi r^3}\left(1 -2\ln(r)\right) + B'(r)\frac{\lambda^2}{r^2} - B(r)\frac{2\lambda^2}{r^3}- 2\frac{B''(r)}{r^3} +6\frac{B'(r)}{r^4} \\
+&=& \frac{1}{2\pi r^3}\left(1 -2\ln(r)\right) + B'(r)\frac{\lambda^2}{r^2} - B(r)\frac{2\lambda^2}{r^3}- \frac{2}{r^3}\left(B''(r) + \frac{B'(r)}{r}\right) +2\frac{B'(r)}{r^4}+6\frac{B'(r)}{r^4} \\
+&=& \frac{1}{2\pi r^3}\left(1 -2\ln(r)\right) - B(r)\frac{2\lambda^2}{r^3} + B'(r)\frac{\lambda^2r^2 + 8}{r^4}- \frac{2}{r^3}\left(\frac{\ln(r)}{2\pi} + \lambda^2 B(r)\right) \\
+&=& \frac{1}{2\pi r^3}\left(1 -4\ln(r)\right) - B(r)\frac{4\lambda^2}{r^3} + B'(r)\frac{\lambda^2r^2 + 8}{r^4}
+}
+\baas{
+\Rightarrow H_2''(r) &=& \frac{1}{2\pi r^4}\left(-7 +12\ln(r)\right) + B(r)\frac{12\lambda^2}{r^4} + B'(r)\left(-\frac{4\lambda^2}{r^3} -4\frac{\lambda^2r^2 + 8}{r^5} + \frac{2\lambda^2r}{r^4}\right) + B''(r)\frac{\lambda^2r^2 + 8}{r^4} \\
+&=& \frac{1}{2\pi r^4}\left(-7 +12\ln(r)\right) + B(r)\frac{12\lambda^2}{r^4} - B'(r)\frac{6\lambda^2 r^2 + 32}{r^5} + B''(r)\frac{\lambda^2r^2 + 8}{r^4}\\
+\Rightarrow H_2''(r) + 5 \frac{H_2'(r)}{r} &=& \frac{1}{2\pi r^4}\left(-7 +12\ln(r)\right) + B(r)\frac{12\lambda^2}{r^4} - B'(r)\frac{6\lambda^2 r^2 + 32}{r^5} + B''(r)\frac{\lambda^2r^2 + 8}{r^4} \\
+&&+ \frac{5}{2\pi r^4}\left(1 -4\ln(r)\right) - B(r)\frac{20\lambda^2}{r^4} + B'(r)\frac{5\lambda^2r^2 + 40}{r^5} \\
+&=& \frac{1}{\pi r^4}\left(-1 -4\ln(r)\right) - B(r)\frac{8\lambda^2}{r^4} + B'(r)\frac{-\lambda^2 r^2 + 8}{r^5} + B''(r)\frac{\lambda^2r^2 + 8}{r^4}.
+}
+
+The expression $H_2''(r) - 5H_2'(r)/r$ can be simplified by recognizing that $(8/r^4)(B''(r) + B'(r)/r) = (8/r^4)\Delta B(r) = 4\ln(r)/(\pi r^4) + B(r)8\lambda^2/r^4$. Then we have
+\baas{
+H_2''(r) + 5 \frac{H_2'(r)}{r} &=&  \frac{-1}{\pi r^4} + \frac{\lambda^2}{r^2}\left(B''(r) - \dfrac{B'(r)}{r}\right) \\
+&=& \frac{-1}{\pi r^4} + \lambda^2 H_2(r).
+}
+Using the expressions for the derivatives $B(r)$ and a Bessel identity, we find that 
+\baas{
+H_2(r) &=& \frac{B''(r)}{r^2} - \frac{B'(r)}{r^3} \\
+&=& \frac{-K_1(\lambda r)}{\pi \lambda r^3} - \frac{K_0(\lambda r)}{2\pi r^2} + \frac{1}{\pi \lambda^2 r^4} \\ 
+&=& \frac{-K_2(\lambda r)}{2\pi r^2} + \frac{1}{\pi \lambda^2 r^4}.
+}
+Then,
+\baas{
+H_2''(r) + 5 \frac{H_2'(r)}{r} &= \dfrac{-1}{\pi r^4} + \lambda^2 H_2(r) &= -\frac{\lambda^2}{2\pi r^2}K_2(\lambda r).
+}
+Plugging this into the symmetric quadrupole, we have
+\baas{
+-\frac{\mu}{2}\Delta\bv(\bx) &=& -\bq \left( \frac{B^{(3)}(r)}{r} + B^{(4)}(r) - 2H_2(r)\right) + \left(\bq \cdot \hat{\bx} \right)\hat{\bx}\left(-\frac{\lambda^2}{2\pi r^2}K_2(\lambda r)\right).
+}
+Using Mathematica to calculate the first term, we find that 
+\baas{
+-\frac{\mu}{2}\Delta\bv(\bx) &=& -\bq \left( -\frac{\lambda}{2\pi r} \right)\left( \lambda r K_0(\lambda r) + K_1(\lambda r)\right) + \left(\bq \cdot \hat{\bx} \right)\hat{\bx}\left(-\frac{\lambda^2}{2\pi r^2}K_2(\lambda r)\right).
+}
+
+The pressure associated with the quadrupole solution is
+\bees{
+-\frac{\Delta p}{2} = \Delta\left(\bq\cdot \nabla  G(r) \right) = \bq\cdot \nabla \Delta G(r) =\bq\cdot \nabla\delta(r),
+}
+which is a local term occurring only at the pole $\bx_0$. So the pressure gradient associated with the symmetric quadrupole does not affect the flow field away from $\bx_0$.
+
+\vspace{4mm}
+\section{Superposition of solutions}
+We shall assume that the strength of the symmetric quadrupole is proportional to $\ff$: $\bq = C \ff$ for some constant $C$. This will help us cancel the terms in the unsteady Stokeslet that depend on $\bx$. Summing the unsteady Stokeslet with the symmetric quadrupole gives us 
+\baa{
+\mu\bu(\bx) &=& -\ff \left[B''(r) - C\frac{\lambda}{2\pi r}\left( \lambda r K_0(\lambda r) + K_1(\lambda r)\right)\right]+ \left(\ff \cdot \hat{\bx} \right)\hat{\bx} \left[H_2(r) - C \frac{\lambda^2}{2\pi r^2}K_2(\lambda r)\right].\label{velfield}
+}
+At $r=a$, we require the velocity to be $v_c^* \ex$. One way of fulfilling this requirement is to assume 
+\baas{
+\begin{pmatrix} \mu v_c^* \\ 0 \end{pmatrix} &=& -\ff\left[ B''(a) - C\frac{\lambda}{2\pi r}\left( \lambda r K_0(\lambda r) + K_1(\lambda r)\right)\right]\\
+0 &=& H_2(a) - C \frac{\lambda^2}{2\pi a^2}K_2(\lambda a),
+}
+where we are allowed to choose $C$ and $\ff = (f_1,f_2)$. From these equations, we see that $f_2 = 0$, that $C$ is
+\baas{
+C &=& \dfrac{2 \pi a^2 H_2(a)}{\lambda^2 K_2(\lambda a) },
+}
+and that $f_1$ has the form
+\baas{
+f_1 &=& \dfrac{-\mu v_c^*}{B''(a) - C\frac{\lambda}{2\pi a}\left( \lambda a K_0(\lambda a) + K_1(\lambda a)\right)} \\
+&=& \dfrac{2\pi a^2\lambda^2 K_2(\lambda a) \mu v_c^*}{K_0(\lambda a)},  
+}
+using Mathematica.
+Additionally, using the expressions for $C$ and $H_2$, we have
+\bees{
+H_2(r) - C \frac{\lambda^2}{2\pi r^2}K_2(\lambda r) = \dfrac{1}{\pi\lambda^2 r^4}\left( 1 - \dfrac{r^2 K_2(\lambda r)}{a^2 K_2(\lambda a)} \right).
+}
+
+Denoting the elements of the velocity field $\bu(\bx) e^{i \omega t}$ by $(u,v)$, we combine the results of our work with Eq.~\eqref{pressure} to find
+\begin{align*}
+	u(\bx,t) &= -\frac{f_1}{\mu}\left(  \frac{-rK_0(\lambda r) -K_1(\lambda r)}{\pi a^2r\lambda^3K_2(\lambda a)} + \frac{1}{2\pi r^2\lambda^2} \right)e^{i \omega t} +  \dfrac{ f_1\hat{x}^2}{\pi\lambda^2 \mu r^4}\left( 1 - \dfrac{r^2 K_2(\lambda r)}{a^2 K_2(\lambda a)} \right)e^{i \omega t} \\
+	v(\bx,t) &=  \dfrac{f_1\hat{x}\hat{y}}{\pi\lambda^2 \mu r^4}\left( 1 - \dfrac{r^2 K_2(\lambda r)}{a^2 K_2(\lambda a)} \right)e^{i \omega t} \\
+	p(\bx,t) &= \frac{f_1 \hat{x}}{2\pi r^2}e^{i \omega t} .
+\end{align*}
+
+\vspace{4mm}
+\section{Nonzero boundary conditions at infinity}
+We have now found a solution to the equations
+\baas{
+\mu\left(\Delta - \lambda^2 \right)\bu(\bx) &=& \nabla p(\bx) \\
+\nabla \cdot \bu &=& 0 \\
+\bu &=& v_c^*\ex \text{ when } r = a  \\
+\bu &\to& \mathbf{0} \text{ as } r \to \infty,
+}
+where $\bu$ and $p$ are to be multiplied by $e^{i\omega t}$ for the complete oscillatory solution.
+Suppose that $\bw$ and $q$ satisfy the equations
+\baas{
+\mu\left(\Delta - \lambda^2 \right)\bw(\bx) &=& \nabla q(\bx) \\
+\nabla \cdot \bw &=& 0 \\
+\bw &=& v_h^*\ex \text{ when } r = a  \\
+\bw &\to& \vinf \ex \text{ as } r \to \infty.
+}
+We would like to write $(\bw,q)$ in terms of our known solution $(\bu,p)$. If we say $\bu = \bw - \vinf\ex$ with corresponding boundary condition $v_c^*\ex  =  v_h^* - \vinf \ex$ and substitute into the equation for $\bu$, we have
+\baas{
+\mu\left(\Delta - \lambda^2 \right)\bw(\bx) &=& \nabla p(\bx) - \mu\lambda^2\vinf \ex \\
+\nabla \cdot \bw &=& 0 \\
+\bw &=& v_h^*\ex \text{ when } r = a  \\
+\bw &\to& \vinf \ex \text{ as } r \to \infty.
+}
+We write $q$ as
+\baas{
+\nabla q(\bx)  &=& \nabla p(\bx) -\mu\lambda^2\vinf\ex\\
+\Rightarrow q(\bx) &=& p(\bx) - \mu\lambda^2\vinf \hat{x},
+}
+where we have chosen $\hat{x} = x - x_0$ in the particular solution to keep all the variables in terms of the distance to the pole $\bx_0$. 
+Then the final solution $\bw = \bu + \vinf\ex$ for a nonzero boundary condition at infinity is given in terms of our known solution:
+\begin{align*}
+	u(\bx,t) &= \vinf e^{i \omega t} -\frac{\hat{f}_1}{\mu}\left( \frac{-rK_0(\lambda r) -K_1(\lambda r)}{\pi a^2r\lambda^3K_2(\lambda a)} + \frac{1}{2\pi r^2\lambda^2} \right)e^{i \omega t} +  \dfrac{\hat{f}_1\hat{x}^2}{\pi\lambda^2\mu r^4}\left( 1 - \dfrac{r^2 K_2(\lambda r)}{a^2 K_2(\lambda a)} \right)e^{i \omega t} \\
+	v(\bx,t) &=  \dfrac{\hat{f}_1\hat{x}\hat{y}}{\pi\lambda^2 \mu r^4}\left( 1 - \dfrac{r^2 K_2(\lambda r)}{a^2 K_2(\lambda a)} \right)e^{i \omega t} \\
+	q(\bx,t) &= \frac{\hat{f}_1 \hat{x}}{2\pi r^2}e^{i \omega t} - \mu\lambda^2\vinf \hat{x} e^{i \omega t}, 
+\end{align*}
+with the modified force given by 
+\bees{
+\hat{f}_1 = \dfrac{2\pi a^2\lambda^2 \mu K_2(\lambda a) (v_h^* - \vinf)}{K_0(\lambda a) + 8\pi^2 a^4 (H_2(a))^2}.  
+}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

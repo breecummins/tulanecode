@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=0.75in,bottom=0.75in,left=0.5in,right=0.5in]{geometry}
+\usepackage{amsmath,amssymb,multirow,graphicx,wrapfig}
+
+\newcommand{\bee}[1]{\begin{equation} #1 \end{equation}}
+\newcommand{\baa}[1]{\begin{eqnarray} #1 \end{eqnarray}}
+\newcommand{\bees}[1]{\begin{equation*} #1 \end{equation*}}
+\newcommand{\baas}[1]{\begin{eqnarray*} #1 \end{eqnarray*}}
+
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\dd}[2]{\ensuremath{\frac{d #1}{d #2}}}
+
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\bx}{{\mathbf x}}
+\newcommand{\ff}{{\mathbf f}}
+\newcommand{\pe}{\phi_\epsilon}
+\newcommand{\Ge}{G_\epsilon}
+\newcommand{\Be}{B_\epsilon}
+\newcommand{\Bd}{B_\delta}
+\newcommand{\Fd}{F_\delta}
+\newcommand{\eps}{\epsilon}
+
+
+
+\title{Showing divergence free velocity fields from a Stokeslet}
+\author{Bree Cummins}
+
+\begin{document}
+\maketitle
+
+We have that the velocity from a regularized Stokeslet (with fluid viscosity $\mu =1$) is
+\bees{
+\bu =(\ff \cdot \nabla)\nabla\Be(r) - \ff\nabla^2\Be(r), 
+}
+where $r = |\bx|$ and the radially symmetric function $\Be$ varies with the choice of blob function. The assumption of radial symmetry allows us to make some simplifications. In the following, $\partial_i$ means take the derivative with respect to the $i$-th Cartesian coordinate, and $n$ is the dimension of the domain.
+\baas{
+\nabla\Be &=& \frac{\Be'(r)}{r}\bx \\
+\left(\left( \ff \cdot \nabla \right) \nabla\Be\right)_j &=& \sum_{i=1}^n f_i\partial_i\left( \frac{\Be'(r)}{r} x_j\right) \\
+&=& \sum_{i=1}^n \frac{\Be'(r)}{r} f_i \delta_{ij} + \sum_{i=1}^n x_j f_i\partial_i \frac{\Be'(r)}{r} \\
+&=&  \frac{\Be'(r)}{r} f_j + \sum_{i=1}^n x_j \frac{f_i x_i}{r} \left( \frac{\Be''(r)}{r} - \frac{\Be'(r)}{r^2} \right) \\
+\Rightarrow \left( \ff \cdot \nabla \right)\nabla\Be &=& \frac{\Be'(r)}{r} \ff + \left( \frac{\Be''(r)}{r^2} - \frac{\Be'(r)}{r^3} \right)(\ff \cdot \bx) \bx.
+}
+Then we may write
+\baa{
+\bu &=& \left(\frac{\Be'(r)}{r}-\nabla^2\Be(r)\right) \ff + \left( \frac{\Be''(r)}{r^2} - \frac{\Be'(r)}{r^3} \right)(\ff \cdot \bx) \bx \nonumber\\
+&=& H_1(r) \ff + H_2(r) (\ff \cdot \bx) \bx. \label{eq1}
+}
+The Laplacian in $H_1$ introduces different dependencies on $\Be'(r)$ in two and three dimensions. In two dimensions,
+\baa{
+H_1^{2D} &=& \frac{\Be'(r)}{r}-\nabla^2\Be \nonumber\\
+&=& \frac{\Be'(r)}{r} - \frac{1}{r}\left( r\Be'(r)\right)' \nonumber\\
+&=& \frac{\Be'(r)}{r} - \frac{1}{r}\left( \Be'(r)+r \Be''(r)\right) \nonumber\\
+&=& -\Be''(r). \label{H12D}
+}
+Additionally, in two dimensions we add a constant to $H_1$, to remove a constant flow induced everywhere by the Stokeslet. This is equivalent to solving for a shifted velocity field. Since the divergence of a constant times the force, $c\ff$, is zero, we ignore it in the following work.
+
+In three dimensions, the Laplacian has a different form, and consequently, so does $H_1$:
+\baa{
+H_1^{3D} &=& \frac{\Be'(r)}{r}-\nabla^2\Be \nonumber\\
+&=& \frac{\Be'(r)}{r} - \frac{1}{r^2}\left( r^2\Be'(r)\right)' \nonumber\\
+&=& \frac{\Be'(r)}{r} - \frac{1}{r^2}\left( 2r\Be'(r)- r^2 \Be''(r)\right) \nonumber\\
+&=& \frac{\Be'(r)}{r} - \frac{2\Be'(r)}{r} - \Be''(r) \nonumber\\
+&=&  - \Be''(r) - \frac{\Be'(r)}{r}. \label{H22D}
+}
+
+We take the divergence (in Cartesian coordinates) of Eq.~\eqref{eq1} in $n$ dimensions:
+\baas{
+\nabla \cdot \bu &=& \sum_{i=1}^n \partial_i(H_1(r)f_i)  + \partial_i(H_2(r)(\ff \cdot \bx)x_i)\\
+&=& \sum_{i=1}^n \frac{H_1'(r)}{r}f_ix_i + \sum_{i=1}^n \frac{H_2'(r)}{r}(\ff \cdot \bx)x_i^2 + \sum_{i=1}^n H_2(r)(\ff \cdot \bx) + \sum_{i=1}^n H_2(r)f_ix_i\\
+&=& \frac{H_1'(r)}{r}(\ff \cdot \bx) + \frac{H_2'(r)}{r}(\ff \cdot \bx)r^2 + nH_2(r)(\ff \cdot \bx)+ H_2(r)(\ff \cdot \bx) \\
+&=& (\ff \cdot \bx) \left( \frac{H_1'(r)}{r} + r H_2'(r) + (n+1) H_2(r)\right).
+}
+In order for $\bu$ to be divergence free, we require that $\frac{H_1'(r)}{r} + r H_2'(r) + (n+1) H_2(r) = 0$. In both two and three dimensions, we have that 
+\baas{
+H_2'(r) &=& \pd{}{r}\left( \frac{\Be''(r)}{r^2} - \frac{\Be'(r)}{r^3} \right) \\
+&=& \frac{\Be'''(r)}{r^2} -\frac{2\Be''(r)}{r^3} - \frac{\Be''(r)}{r^3} + \frac{3\Be'(r)}{r^4} \\
+\Rightarrow r H_2'(r) &=& \frac{\Be'''(r)}{r} -\frac{3\Be''(r)}{r^2} + \frac{3\Be'(r)}{r^3}.
+}
+In two dimensions,
+\baas{
+\frac{(H_1^{2D})'(r)}{r} &=& -\frac{\Be'''(r)}{r},
+}
+so that 
+\baas{
+\frac{H_1'(r)}{r} + r H_2'(r) + (n+1) H_2(r) &=& -\frac{\Be'''(r)}{r} + \frac{\Be'''(r)}{r} -\frac{3\Be''(r)}{r^2} + \frac{3\Be'(r)}{r^3} + \frac{3\Be''(r)}{r^2} - \frac{3\Be'(r)}{r^3}\\
+&=& 0,
+}
+yielding a divergence free velocity field as desired.
+In three dimensions,
+\baas{
+\frac{(H_1^{3D})'(r)}{r} &=& \frac{1}{r}\left( - \Be'''(r) - \frac{\Be''(r)}{r} + \frac{\Be'(r)}{r^2}\right) \\
+&=& - \frac{\Be'''(r)}{r} - \frac{\Be''(r)}{r^2} + \frac{\Be'(r)}{r^3},
+}
+so that 
+\baas{
+\frac{H_1'(r)}{r} + r H_2'(r) + (n+1) H_2(r) &=& -\frac{\Be'''(r)}{r} - \frac{\Be''(r)}{r^2} + \frac{\Be'(r)}{r^3} + \frac{\Be'''(r)}{r} -\frac{3\Be''(r)}{r^2} + \frac{3\Be'(r)}{r^3} \\
+&& + \frac{4\Be''(r)}{r^2} - \frac{4\Be'(r)}{r^3}\\
+&=& 0,
+}
+also yielding a divergence free velocity. This is the expected result, since the solution for $\bu$ is constructed using the incompressibility condition. 
+
+However, instead of starting with a blob function and deriving $\Be$, one could replace $B'(r) = -1/8\pi$ (the derivative of the biharmonic function in the singular case) with a regularizing function $\Bd'(r) = -(1/8\pi)\Fd(r)$. By defining $H_1$ and $H_2$ using $\Bd'(r)$ instead of $\Be'(r)$ in Eqs.~\eqref{eq1}, \eqref{H12D}, and \eqref{H22D}, we have just shown that a divergence free velocity would result. One could then back-solve to discover the associated blob function. This is what Karin did in the Brinkman paper.
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

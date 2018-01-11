@@ -1,0 +1,307 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      9110,        297]
+NotebookOptionsPosition[      8305,        264]
+NotebookOutlinePosition[      8644,        279]
+CellTagsIndexPosition[      8601,        276]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"r", ",", "f", ",", "\[Omega]", ",", "\[Nu]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"r", "^", "2"}], " ", "*", " ", 
+      RowBox[{
+       RowBox[{"f", "''"}], "[", "r", "]"}]}], " ", "+", " ", 
+     RowBox[{"r", "*", 
+      RowBox[{
+       RowBox[{"f", "'"}], "[", "r", "]"}]}], " ", "-", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", " ", "+", " ", 
+        RowBox[{"I", "*", "\[Omega]", "*", 
+         RowBox[{
+          RowBox[{"r", "^", "2"}], "/", "\[Nu]"}]}]}], ")"}], "*", 
+      RowBox[{"f", "[", "r", "]"}]}]}], " ", "==", " ", "0"}], ",", " ", 
+   RowBox[{"f", "[", "r", "]"}], ",", " ", "r"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.491563970909919*^9, 3.4915640589310017`*^9}, {
+   3.491564089907476*^9, 3.491564095146625*^9}, {3.491564239860055*^9, 
+   3.491564264763392*^9}, {3.491564296115602*^9, 3.491564307675076*^9}, {
+   3.491570061507572*^9, 3.491570119547735*^9}, 3.491570814738901*^9, 
+   3.49157106895485*^9, {3.491576255818956*^9, 3.4915763012779417`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"f", "[", "r", "]"}], "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"BesselJ", "[", 
+        RowBox[{"1", ",", 
+         FractionBox[
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], 
+            RowBox[{"3", "/", "4"}]], " ", "r", " ", 
+           SqrtBox["\[Omega]"]}], 
+          SqrtBox["\[Nu]"]]}], "]"}]}], " ", 
+      RowBox[{"C", "[", "1", "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"BesselY", "[", 
+       RowBox[{"1", ",", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], 
+            RowBox[{"3", "/", "4"}]], " ", "r", " ", 
+           SqrtBox["\[Omega]"]}], 
+          SqrtBox["\[Nu]"]]}]}], "]"}], " ", 
+      RowBox[{"C", "[", "2", "]"}]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.49156404183388*^9, 3.491564061281336*^9}, 
+   3.491564097110941*^9, 3.491564252777446*^9, 3.491564317349557*^9, 
+   3.491570070282072*^9, {3.491570113767456*^9, 3.4915701234081097`*^9}, 
+   3.4915708162370863`*^9, 3.491571070552979*^9, 3.491576308463358*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"r", ",", "f", ",", "\[Omega]", ",", "\[Nu]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"r", "^", "2"}], " ", "*", " ", 
+      RowBox[{
+       RowBox[{"f", "''"}], "[", "r", "]"}]}], " ", "+", " ", 
+     RowBox[{"r", "*", 
+      RowBox[{
+       RowBox[{"f", "'"}], "[", "r", "]"}]}], " ", "-", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"4", " ", "+", " ", 
+        RowBox[{"I", "*", "\[Omega]", "*", 
+         RowBox[{
+          RowBox[{"r", "^", "2"}], "/", "\[Nu]"}]}]}], ")"}], "*", 
+      RowBox[{"f", "[", "r", "]"}]}]}], " ", "==", " ", "0"}], ",", " ", 
+   RowBox[{"f", "[", "r", "]"}], ",", " ", "r"}], "]"}]}], "Input",
+ CellChangeTimes->{3.491578383087665*^9, 3.491578431936212*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"f", "[", "r", "]"}], "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"BesselJ", "[", 
+       RowBox[{"2", ",", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"3", "/", "4"}]], " ", "r", " ", 
+          SqrtBox["\[Omega]"]}], 
+         SqrtBox["\[Nu]"]]}], "]"}], " ", 
+      RowBox[{"C", "[", "1", "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"BesselY", "[", 
+       RowBox[{"2", ",", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], 
+            RowBox[{"3", "/", "4"}]], " ", "r", " ", 
+           SqrtBox["\[Omega]"]}], 
+          SqrtBox["\[Nu]"]]}]}], "]"}], " ", 
+      RowBox[{"C", "[", "2", "]"}]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.491578406062873*^9, 3.4915784331985903`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"r", ",", "f", ",", "m"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"r", " ", "*", " ", 
+      RowBox[{
+       RowBox[{"f", "''"}], "[", "r", "]"}]}], " ", "+", " ", 
+     RowBox[{
+      RowBox[{"f", "'"}], "[", "r", "]"}], " ", "-", " ", 
+     RowBox[{
+      RowBox[{"m", "^", "2"}], "*", "r", "*", 
+      RowBox[{"f", "[", "r", "]"}]}]}], " ", "==", " ", "0"}], ",", " ", 
+   RowBox[{"f", "[", "r", "]"}], ",", " ", "r"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.491587181954561*^9, 3.4915872177291737`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"f", "[", "r", "]"}], "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"BesselJ", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"\[ImaginaryI]", " ", "m", " ", "r"}]}], "]"}], " ", 
+      RowBox[{"C", "[", "1", "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"BesselY", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{
+         RowBox[{"-", "\[ImaginaryI]"}], " ", "m", " ", "r"}]}], "]"}], " ", 
+      RowBox[{"C", "[", "2", "]"}]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.491587221045739*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"r", ",", "m"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{"BesselJ", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"I", "*", "m", "*", "r"}]}], "]"}], ",", "r"}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{
+  3.491587158808519*^9, {3.4915881305717688`*^9, 3.4915881809480543`*^9}, {
+   3.491588215055748*^9, 3.4915882154457073`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "\[ImaginaryI]"}], " ", "m", " ", 
+  RowBox[{"BesselJ", "[", 
+   RowBox[{"1", ",", 
+    RowBox[{"\[ImaginaryI]", " ", "m", " ", "r"}]}], "]"}]}]], "Output",
+ CellChangeTimes->{3.4915881876515408`*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.491588194050456*^9, 3.491588199499837*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"r", ",", "f", ",", "m"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"r", "^", "2"}], " ", "*", " ", 
+      RowBox[{
+       RowBox[{"f", "''"}], "[", "r", "]"}]}], " ", "+", " ", 
+     RowBox[{"r", "*", 
+      RowBox[{
+       RowBox[{"f", "'"}], "[", "r", "]"}]}], " ", "-", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", " ", 
+        RowBox[{
+         RowBox[{"m", "^", "2"}], "*", 
+         RowBox[{"r", "^", "2"}]}]}], ")"}], "*", 
+      RowBox[{"f", "[", "r", "]"}]}]}], " ", "==", " ", "0"}], ",", " ", 
+   RowBox[{"f", "[", "r", "]"}], ",", " ", "r"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.491588222711348*^9, 3.491588286441497*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"f", "[", "r", "]"}], "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"BesselJ", "[", 
+        RowBox[{"1", ",", 
+         RowBox[{"\[ImaginaryI]", " ", "m", " ", "r"}]}], "]"}]}], " ", 
+      RowBox[{"C", "[", "1", "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"BesselY", "[", 
+       RowBox[{"1", ",", 
+        RowBox[{
+         RowBox[{"-", "\[ImaginaryI]"}], " ", "m", " ", "r"}]}], "]"}], " ", 
+      RowBox[{"C", "[", "2", "]"}]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.491588267081173*^9, 3.491588290170857*^9}}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{12, Automatic}, {Automatic, 0}},
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 1132, 27, 58, "Input"],
+Cell[1702, 51, 1233, 35, 55, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2972, 91, 837, 23, 58, "Input"],
+Cell[3812, 116, 988, 31, 55, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4837, 152, 623, 16, 43, "Input"],
+Cell[5463, 170, 575, 17, 27, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6075, 192, 430, 11, 58, "Input"],
+Cell[6508, 205, 239, 6, 27, "Output"]
+}, Open  ]],
+Cell[6762, 214, 92, 1, 27, "Input"],
+Cell[CellGroupData[{
+Cell[6879, 219, 783, 22, 58, "Input"],
+Cell[7665, 243, 624, 18, 27, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

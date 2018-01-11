@@ -1,0 +1,382 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     13173,        373]
+NotebookOptionsPosition[     12346,        342]
+NotebookOutlinePosition[     12686,        357]
+CellTagsIndexPosition[     12643,        354]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"TextCell", "[", "\"\<Start with a Gaussian blob of integral 1.\>\"",
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "A", ",", "B", ",", "C1", ",", "C2", ",", "C3", ",", "C4", ",", "\[Alpha]", 
+   ",", "\[Epsilon]", ",", "r", ",", "Gp", ",", "Ge", ",", "Be", ",", "f1", 
+   ",", "f2", ",", "\[Phi]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Phi]", "[", "r_", "]"}], " ", ":=", " ", 
+  RowBox[{"A", "*", 
+   RowBox[{"Exp", "[", 
+    RowBox[{
+     RowBox[{"-", "B"}], "*", 
+     RowBox[{
+      RowBox[{"r", "^", "2"}], "/", 
+      RowBox[{"\[Epsilon]", "^", "2"}]}]}], 
+    "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"A", ":=", 
+  RowBox[{"2", "*", 
+   RowBox[{"B", "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Epsilon]", "*", 
+      RowBox[{"Sqrt", "[", "Pi", "]"}]}], 
+     ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"\[Phi]", "[", "r", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Gp", "[", "r_", "]"}], " ", ":=", " ", 
+   RowBox[{"A", "*", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"r", "^", "2"}], "*", 
+       RowBox[{"Exp", "[", 
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{"r", "^", "2"}]}], "/", 
+         RowBox[{"\[Epsilon]", "^", "2"}]}], "]"}]}], ",", "r"}], "]"}]}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Ge", "[", "r_", "]"}], " ", ":=", " ", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Gp", "[", "r", "]"}], "/", 
+      RowBox[{"r", "^", "2"}]}], ",", "r"}], "]"}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"TextCell", "[", "\"\<Get the Green's function\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Ge", "[", "r", "]"}]}], "Input",
+ CellChangeTimes->{{3.505918877295623*^9, 3.505919058550262*^9}, {
+  3.5059191315374727`*^9, 3.505919240854177*^9}, {3.505919279934513*^9, 
+  3.505919291615882*^9}, {3.505921310283947*^9, 3.505921398664567*^9}, {
+  3.505921472866696*^9, 3.5059214800423326`*^9}, {3.505922248411653*^9, 
+  3.50592230279179*^9}, {3.50592233962507*^9, 3.5059223942793818`*^9}, {
+  3.505922465642251*^9, 3.5059224685299788`*^9}, {3.505922537013772*^9, 
+  3.505922537700158*^9}, {3.505922568948349*^9, 3.505922569341462*^9}, {
+  3.505922667378086*^9, 3.5059226905931396`*^9}, {3.5059228788151407`*^9, 
+  3.505922880670106*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Start with a Gaussian blob of integral 1."],
+  TextCell["Start with a Gaussian blob of integral 1."]]], "Output",
+ CellChangeTimes->{
+  3.505922396641862*^9, 3.5059225731219*^9, {3.5059226708241577`*^9, 
+   3.505922699138068*^9}, 3.505922896662445*^9, 3.5059231811916027`*^9, 
+   3.505923399194862*^9, 3.50592350278164*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"2", " ", "B", " ", 
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{"B", " ", 
+       SuperscriptBox["r", "2"]}], 
+      SuperscriptBox["\[Epsilon]", "2"]]}]]}], 
+  RowBox[{
+   SqrtBox["\[Pi]"], " ", "\[Epsilon]"}]]], "Output",
+ CellChangeTimes->{
+  3.505922396641862*^9, 3.5059225731219*^9, {3.5059226708241577`*^9, 
+   3.505922699138068*^9}, 3.505922896662445*^9, 3.5059231811916027`*^9, 
+   3.505923399194862*^9, 3.505923502784342*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Get the Green's function"],
+  TextCell["Get the Green's function"]]], "Output",
+ CellChangeTimes->{
+  3.505922396641862*^9, 3.5059225731219*^9, {3.5059226708241577`*^9, 
+   3.505922699138068*^9}, 3.505922896662445*^9, 3.5059231811916027`*^9, 
+   3.505923399194862*^9, 3.5059235027862597`*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"B", " ", 
+    SuperscriptBox["\[Epsilon]", "2"], " ", 
+    RowBox[{"Erf", "[", 
+     FractionBox["r", "\[Epsilon]"], "]"}]}], 
+   RowBox[{"2", " ", "r"}]]}]], "Output",
+ CellChangeTimes->{
+  3.505922396641862*^9, 3.5059225731219*^9, {3.5059226708241577`*^9, 
+   3.505922699138068*^9}, 3.505922896662445*^9, 3.5059231811916027`*^9, 
+   3.505923399194862*^9, 3.505923502842389*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "TextCell", "[", "\"\<Restrictions on Ge. Finite limit at zero.\>\"", 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Limit", "[", 
+    RowBox[{
+     RowBox[{"Ge", "[", "r", "]"}], ",", 
+     RowBox[{"r", "\[Rule]", "0"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+   "TextCell", "[", 
+    "\"\<Since the limit of erf is 1 as r->Infinity, pick B so that Ge \
+approaches -1/4*Pi*r as r becomes large. The Green's function is\>\"", "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"B", " ", ":=", " ", 
+    RowBox[{"1", "/", 
+     RowBox[{"(", 
+      RowBox[{"2", "*", "Pi", "*", 
+       RowBox[{"\[Epsilon]", "^", "2"}]}], ")"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Ge", "[", "r", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.505922450725663*^9, 3.505922503492446*^9}, {
+  3.5059227557983294`*^9, 3.505922808576488*^9}, {3.505922890197617*^9, 
+  3.5059230603332167`*^9}, {3.505923151005389*^9, 3.50592315838757*^9}, {
+  3.5059233664551888`*^9, 3.505923394952883*^9}, {3.505923476039728*^9, 
+  3.505923494699607*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Restrictions on Ge. Finite limit at zero."],
+  TextCell["Restrictions on Ge. Finite limit at zero."]]], "Output",
+ CellChangeTimes->{
+  3.50592250492875*^9, 3.505922598848715*^9, 3.505922749479019*^9, 
+   3.5059228113219624`*^9, 3.505922901544409*^9, 3.505923063322949*^9, {
+   3.505923160375774*^9, 3.505923183406941*^9}, {3.505923396112602*^9, 
+   3.5059234034111*^9}, 3.5059235051493177`*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"B", " ", "\[Epsilon]"}], 
+   SqrtBox["\[Pi]"]]}]], "Output",
+ CellChangeTimes->{
+  3.50592250492875*^9, 3.505922598848715*^9, 3.505922749479019*^9, 
+   3.5059228113219624`*^9, 3.505922901544409*^9, 3.505923063322949*^9, {
+   3.505923160375774*^9, 3.505923183406941*^9}, {3.505923396112602*^9, 
+   3.5059234034111*^9}, 3.505923505206905*^9}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["\<\
+Since the limit of erf is 1 as r->Infinity, pick B so that Ge approaches \
+-1/4*Pi*r as r becomes large. The Green's function is\
+\>"],
+  TextCell[
+  "Since the limit of erf is 1 as r->Infinity, pick B so that Ge approaches \
+-1/4*Pi*r as r becomes large. The Green's function is"]]], "Output",
+ CellChangeTimes->{
+  3.50592250492875*^9, 3.505922598848715*^9, 3.505922749479019*^9, 
+   3.5059228113219624`*^9, 3.505922901544409*^9, 3.505923063322949*^9, {
+   3.505923160375774*^9, 3.505923183406941*^9}, {3.505923396112602*^9, 
+   3.5059234034111*^9}, 3.505923505209137*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"Erf", "[", 
+    FractionBox["r", "\[Epsilon]"], "]"}], 
+   RowBox[{"4", " ", "\[Pi]", " ", "r"}]]}]], "Output",
+ CellChangeTimes->{
+  3.50592250492875*^9, 3.505922598848715*^9, 3.505922749479019*^9, 
+   3.5059228113219624`*^9, 3.505922901544409*^9, 3.505923063322949*^9, {
+   3.505923160375774*^9, 3.505923183406941*^9}, {3.505923396112602*^9, 
+   3.5059234034111*^9}, 3.505923505211194*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "TextCell", "[", 
+    "\"\<Now we find Be using the integrals from my thesis. Here is Be.\>\"", 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"f1", "[", "r_", "]"}], " ", ":=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Exp", "[", 
+        RowBox[{
+         RowBox[{"-", "\[Alpha]"}], "*", "r"}], "]"}], "/", "r"}], ")"}], "*", 
+     RowBox[{"(", 
+      RowBox[{"C1", "-", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", "*", "\[Alpha]"}], ")"}]}], ")"}], "*", 
+        RowBox[{"Integrate", "[", 
+         RowBox[{
+          RowBox[{"r", "*", 
+           RowBox[{"Exp", "[", 
+            RowBox[{"\[Alpha]", "*", "r"}], "]"}], "*", 
+           RowBox[{"Ge", "[", "r", "]"}]}], ",", "r"}], "]"}]}]}], ")"}]}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"f2", "[", "r_", "]"}], " ", ":=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Exp", "[", 
+        RowBox[{"\[Alpha]", "*", "r"}], "]"}], "/", "r"}], ")"}], "*", 
+     RowBox[{"(", 
+      RowBox[{"C2", "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", "*", "\[Alpha]"}], ")"}]}], ")"}], "*", 
+        RowBox[{"Integrate", "[", 
+         RowBox[{
+          RowBox[{"r", "*", 
+           RowBox[{"Exp", "[", 
+            RowBox[{
+             RowBox[{"-", "\[Alpha]"}], "*", "r"}], "]"}], "*", 
+           RowBox[{"Ge", "[", "r", "]"}]}], ",", "r"}], "]"}]}]}], ")"}]}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Be", "[", "r_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"f1", "[", "r", "]"}], "+", 
+     RowBox[{"f2", "[", "r", "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{"Be", "[", "r", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.5059205433381968`*^9, 3.505920618060329*^9}, {
+  3.50592065773569*^9, 3.505920921301252*^9}, {3.505920953558423*^9, 
+  3.50592096587612*^9}, {3.50592101104867*^9, 3.505921054511073*^9}, {
+  3.505921483972768*^9, 3.50592148576624*^9}, {3.505922694999852*^9, 
+  3.505922696944804*^9}, {3.5059233083484983`*^9, 3.505923311299357*^9}, {
+  3.505923810747527*^9, 3.50592382298123*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[Cell["Now we find Be using the integrals from my thesis."],
+  
+  TextCell["Now we find Be using the integrals from my thesis."]]], "Output",
+ CellChangeTimes->{
+  3.5059209228704243`*^9, 3.505920969230492*^9, {3.505921040553825*^9, 
+   3.5059210584536467`*^9}, 3.505921514542327*^9, 3.5059236382810917`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"-", "r"}], " ", "\[Alpha]"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"C1", "+", 
+      FractionBox[
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"r", " ", "\[Alpha]"}]], " ", 
+         RowBox[{"Erf", "[", 
+          FractionBox["r", "\[Epsilon]"], "]"}]}], "-", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["\[Alpha]", "2"], " ", 
+            SuperscriptBox["\[Epsilon]", "2"]}], "4"]], " ", 
+         RowBox[{"Erf", "[", 
+          RowBox[{
+           FractionBox["r", "\[Epsilon]"], "-", 
+           FractionBox[
+            RowBox[{"\[Alpha]", " ", "\[Epsilon]"}], "2"]}], "]"}]}]}], 
+       RowBox[{"8", " ", "\[Pi]", " ", 
+        SuperscriptBox["\[Alpha]", "2"]}]]}], ")"}]}], "r"], "+", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"r", " ", "\[Alpha]"}]], " ", 
+    RowBox[{"(", 
+     RowBox[{"C2", "-", 
+      FractionBox[
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{
+            RowBox[{"-", "r"}], " ", "\[Alpha]"}]]}], " ", 
+         RowBox[{"Erf", "[", 
+          FractionBox["r", "\[Epsilon]"], "]"}]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["\[Alpha]", "2"], " ", 
+            SuperscriptBox["\[Epsilon]", "2"]}], "4"]], " ", 
+         RowBox[{"Erf", "[", 
+          RowBox[{
+           FractionBox["r", "\[Epsilon]"], "+", 
+           FractionBox[
+            RowBox[{"\[Alpha]", " ", "\[Epsilon]"}], "2"]}], "]"}]}]}], 
+       RowBox[{"8", " ", "\[Pi]", " ", 
+        SuperscriptBox["\[Alpha]", "2"]}]]}], ")"}]}], "r"]}]], "Output",
+ CellChangeTimes->{
+  3.5059209228704243`*^9, 3.505920969230492*^9, {3.505921040553825*^9, 
+   3.5059210584536467`*^9}, 3.505921514542327*^9, 3.505923638350622*^9}]
+}, Open  ]]
+},
+WindowSize->{1041, 987},
+WindowMargins->{{12, Automatic}, {Automatic, 0}},
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 2350, 60, 148, "Input"],
+Cell[2920, 84, 362, 6, 27, "Output"],
+Cell[3285, 92, 517, 14, 69, "Output"],
+Cell[3805, 108, 331, 6, 27, "Output"],
+Cell[4139, 116, 435, 11, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4611, 132, 1090, 25, 133, "Input"],
+Cell[5704, 159, 434, 7, 27, "Output"],
+Cell[6141, 168, 396, 9, 49, "Output"],
+Cell[6540, 179, 617, 12, 27, "Output"],
+Cell[7160, 193, 447, 10, 58, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7644, 208, 2260, 62, 103, "Input"],
+Cell[9907, 272, 340, 6, 27, "Output"],
+Cell[10250, 280, 2080, 59, 94, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
